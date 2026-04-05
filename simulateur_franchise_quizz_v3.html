@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulateur Franchise Quizz V3 — 5 ans · Charges sociales</title>
+<title>Simulateur Franchise Quizz V3 — 5 ans · Salaire + Résultat entreprise</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -78,6 +78,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .yt .tot td{font-weight:700;color:var(--tx);border-top:1.5px solid var(--bdrm);border-bottom:1.5px solid var(--bdrm);padding-top:7px;padding-bottom:7px}
 .yt .cs-row td{background:var(--pu-bg);color:var(--pu)}
 .yt .cs-row td:first-child{color:var(--pu);font-weight:500}
+.yt .sal-row td{background:var(--bl-bg);color:var(--bl)}
+.yt .sal-row td:first-child{color:var(--bl);font-weight:500}
+.yt .entrep-row td{background:var(--gr-bg);color:var(--gr);font-weight:600}
+.yt .entrep-row td:first-child{color:var(--gr)}
 .yt .net-row td{font-size:14px;font-weight:700;border-top:2.5px solid var(--tx);border-bottom:2.5px solid var(--tx);padding-top:9px;padding-bottom:9px}
 .yt .cum td{font-size:11.5px;color:var(--tx3);border-bottom:none}
 
@@ -104,7 +108,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
 
 <header>
   <h1>Simulateur Franchise Quizz Buzzers — V3 · 5 ans avec charges sociales</h1>
-  <p>Intègre les cotisations sociales pour le franchiseur et le franchisé. Choisissez si le franchiseur anime aussi ses propres prestas ou se consacre uniquement au développement du réseau.</p>
+  <p>Intègre les cotisations sociales, la <strong>rémunération personnelle du franchiseur</strong> et le <strong>résultat laissé dans la société</strong>. Choisissez si le franchiseur anime aussi ses propres prestas.</p>
 </header>
 
 <!-- TOGGLE PRESTAS FRANCHISEUR -->
@@ -191,6 +195,22 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
   </div>
 </section>
 
+<!-- RÉMUNÉRATION FRANCHISEUR -->
+<section>
+  <div class="st">Rémunération franchiseur — salaire & résultat entreprise</div>
+  <div class="cs-box">
+    <strong>Comment ça fonctionne :</strong> le franchiseur se verse un salaire (soumis aux CS). Ce qui reste après salaire + CS = <strong>résultat net laissé dans la société</strong> (trésorerie d'entreprise, réserves, future rémunération). Réduire le salaire laisse de la tréso dans la structure pour financer le développement du réseau.
+  </div>
+  <div class="card">
+    <div class="pr"><span class="pl">Salaire mensuel cible (brut)</span><input type="range" id="salF" min="0" max="6000" step="100" value="2000" oninput="upd()"><span class="pv" id="salFV">2 000 €/mois</span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:1rem">
+      <div class="mc"><div class="mc-l">Salaire brut annuel</div><div class="mc-v" id="salBrutAn">24 000 €</div></div>
+      <div class="mc"><div class="mc-l">CS sur salaire (taux ci-dessus)</div><div class="mc-v" id="salCSAn">—</div></div>
+      <div class="mc"><div class="mc-l">Net en poche / mois</div><div class="mc-v" id="salNetMois">—</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- MIX PRESTAS FRANCHISÉ -->
 <section>
   <div class="st">Mix de prestations — franchisé type (nombre / an en régime de croisière)</div>
@@ -219,8 +239,8 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
   <div class="st">Indicateurs clés — fin an 5 (après charges sociales)</div>
   <div class="g5" style="margin-bottom:1rem">
     <div class="mc"><div class="mc-l">Réseau an 5</div><div class="mc-v" id="kR5">—</div><div class="mc-s">franchisés actifs</div></div>
-    <div class="mc"><div class="mc-l">Revenu net franchiseur an 5</div><div class="mc-v" id="kF5">—</div><div class="mc-s">après CS</div></div>
-    <div class="mc"><div class="mc-l">CA réseau an 5</div><div class="mc-v" id="kCA5">—</div><div class="mc-s">tous franchisés</div></div>
+    <div class="mc"><div class="mc-l">Net perso franchiseur an 5</div><div class="mc-v" id="kF5">—</div><div class="mc-s">salaire net en poche</div></div>
+    <div class="mc"><div class="mc-l">Résultat entreprise an 5</div><div class="mc-v" id="kFEntreprise">—</div><div class="mc-s">laissé dans la société</div></div>
     <div class="mc"><div class="mc-l">Revenu net franchisé an 5</div><div class="mc-v" id="kA5">—</div><div class="mc-s">après CS</div></div>
     <div class="mc"><div class="mc-l">ROI franchisé 5 ans</div><div class="mc-v" id="kROI">—</div><div class="mc-s">sur capital investi</div></div>
   </div>
@@ -249,10 +269,13 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
         <tr><td>Commercial recrutement</td><td id="fCo1">—</td><td id="fCo2">—</td><td id="fCo3">—</td><td id="fCo4">—</td><td id="fCo5">—</td></tr>
         <tr><td>Marketing réseau</td><td id="fMk1">—</td><td id="fMk2">—</td><td id="fMk3">—</td><td id="fMk4">—</td><td id="fMk5">—</td></tr>
         <tr><td>Charges structure / perso</td><td id="fCp1">—</td><td id="fCp2">—</td><td id="fCp3">—</td><td id="fCp4">—</td><td id="fCp5">—</td></tr>
-        <tr class="tot"><td>Résultat avant CS</td><td id="fBr1">—</td><td id="fBr2">—</td><td id="fBr3">—</td><td id="fBr4">—</td><td id="fBr5">—</td></tr>
-        <tr class="cs-row"><td>Charges sociales (<span id="csFpct">45</span>%)</td><td id="fCS1">—</td><td id="fCS2">—</td><td id="fCS3">—</td><td id="fCS4">—</td><td id="fCS5">—</td></tr>
-        <tr class="net-row"><td>Revenu net disponible</td><td id="fN1">—</td><td id="fN2">—</td><td id="fN3">—</td><td id="fN4">—</td><td id="fN5">—</td></tr>
-        <tr class="cum"><td>Cumulé net</td><td id="fNC1">—</td><td id="fNC2">—</td><td id="fNC3">—</td><td id="fNC4">—</td><td id="fNC5">—</td></tr>
+        <tr class="tot"><td>Résultat avant rémunération</td><td id="fBr1">—</td><td id="fBr2">—</td><td id="fBr3">—</td><td id="fBr4">—</td><td id="fBr5">—</td></tr>
+        <tr class="sal-row"><td>Salaire franchiseur (brut)</td><td id="fSal1">—</td><td id="fSal2">—</td><td id="fSal3">—</td><td id="fSal4">—</td><td id="fSal5">—</td></tr>
+        <tr class="cs-row"><td>Charges sociales (<span id="csFpct">45</span>% sur salaire)</td><td id="fCS1">—</td><td id="fCS2">—</td><td id="fCS3">—</td><td id="fCS4">—</td><td id="fCS5">—</td></tr>
+        <tr class="entrep-row"><td>Résultat net laissé en entreprise</td><td id="fEnt1">—</td><td id="fEnt2">—</td><td id="fEnt3">—</td><td id="fEnt4">—</td><td id="fEnt5">—</td></tr>
+        <tr class="net-row"><td>Net perso (salaire après CS)</td><td id="fN1">—</td><td id="fN2">—</td><td id="fN3">—</td><td id="fN4">—</td><td id="fN5">—</td></tr>
+        <tr class="cum"><td>Cumulé net perso</td><td id="fNC1">—</td><td id="fNC2">—</td><td id="fNC3">—</td><td id="fNC4">—</td><td id="fNC5">—</td></tr>
+        <tr class="cum"><td>Cumulé résultat entreprise</td><td id="fEC1">—</td><td id="fEC2">—</td><td id="fEC3">—</td><td id="fEC4">—</td><td id="fEC5">—</td></tr>
       </tbody>
     </table>
   </div>
@@ -292,21 +315,22 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
 
 <!-- GRAPHIQUES -->
 <section>
-  <div class="st">Revenu net disponible après charges sociales</div>
+  <div class="st">Résultats nets annuels comparés</div>
   <div class="leg">
-    <span><span class="ls" style="background:#185FA5"></span>Franchiseur (revenu net/an)</span>
-    <span><span class="ls" style="background:#3B6D11"></span>Franchisé (revenu net/an)</span>
+    <span><span class="ls" style="background:#185FA5"></span>Net perso franchiseur</span>
+    <span><span class="ls" style="background:#AFA9EC"></span>Résultat entreprise / an</span>
+    <span><span class="ls" style="background:#3B6D11"></span>Net perso franchisé</span>
   </div>
   <div style="position:relative;width:100%;height:270px"><canvas id="ch1"></canvas></div>
 </section>
 
 <section>
-  <div class="st">CA réseau total généré par tous les franchisés actifs</div>
-  <div class="leg"><span><span class="ls" style="background:#AFA9EC"></span>CA réseau / an</span></div>
+  <div class="st">Résultat entreprise cumulé (trésorerie laissée dans la société)</div>
+  <div class="leg"><span><span class="ls" style="background:#534AB7"></span>Cumul résultat entreprise</span></div>
   <div style="position:relative;width:100%;height:200px"><canvas id="ch2"></canvas></div>
 </section>
 
-<footer>Simulateur V3 — 5 ans avec charges sociales · Généré avec Claude (Anthropic) · Indicatif — à valider avec un expert-comptable.</footer>
+<footer>Simulateur V3 — 5 ans · Salaire + Résultat entreprise · Généré avec Claude (Anthropic) · Indicatif — à valider avec un expert-comptable.</footer>
 </div>
 
 <script>
@@ -348,6 +372,10 @@ function upd(){
   const gro=+document.getElementById('gro').value/100;
   const csF=+document.getElementById('csF').value/100;
   const csA=+document.getElementById('csA').value/100;
+  const salF=+document.getElementById('salF').value;
+  const salFAn=salF*12;
+  const salFCS=Math.round(salFAn*csF);
+  const salFNet=salFAn-salFCS;
 
   // Labels
   document.getElementById('deV').textContent=de.toLocaleString('fr-FR')+' €';
@@ -362,6 +390,10 @@ function upd(){
   document.getElementById('csAV').textContent=Math.round(csA*100)+' %';
   document.getElementById('csFpct').textContent=Math.round(csF*100);
   document.getElementById('csApct').textContent=Math.round(csA*100);
+  document.getElementById('salFV').textContent=salF.toLocaleString('fr-FR')+' €/mois';
+  document.getElementById('salBrutAn').textContent=ff(salFAn);
+  document.getElementById('salCSAn').textContent='- '+ff(salFCS);
+  document.getElementById('salNetMois').textContent=Math.round(salFNet/12).toLocaleString('fr-FR')+' €/mois';
 
   // CA prestas franchiseur (si activé)
   const fpBr=+document.getElementById('fpB').value;
@@ -417,8 +449,8 @@ function upd(){
   const su=[2000,4000,5000,5500,6000];
   const co=[3000,2500,2000,2000,2000];
   const mk=[2000,2500,3000,3000,3000];
-  const fNetArr=[],fCumArr=[];
-  let fCum=0,prevTot=0;
+  const fNetArr=[],fCumArr=[],fEntArr=[],fEntCumArr=[];
+  let fCum=0,fEntCum=0,prevTot=0;
 
   // Prestas franchiseur: an 1=70%, an 2=100%, an 3+=100%+gro
   const fPCoef=[0.7,1,1+gro,1+gro*2,1+gro*3];
@@ -433,9 +465,14 @@ function upd(){
     const foi=nb*800;
     const chargesExpl=ju[i]+foi+su[i]+co[i]+mk[i]+cp;
     const bri=cai-chargesExpl;
-    const csi=bri>0?Math.round(bri*csF):0;
-    const ni=bri-csi;
-    fCum+=ni;fNetArr.push(ni);fCumArr.push(fCum);
+    // Salaire versé : limité au résultat dispo (on ne peut pas se payer plus que ce qu'on gagne)
+    const salVerse=Math.min(salFAn, Math.max(0,bri));
+    const csi=Math.round(salVerse*csF);
+    const entResult=bri-salVerse-csi; // résultat laissé dans l'entreprise
+    const netPerso=salVerse-csi;      // ce que le franchiseur met en poche
+    fCum+=netPerso; fEntCum+=entResult;
+    fNetArr.push(netPerso); fCumArr.push(fCum);
+    fEntArr.push(entResult); fEntCumArr.push(fEntCum);
 
     document.getElementById('fNb'+y).textContent=nb;
     document.getElementById('fTt'+y).textContent=totY[i];
@@ -450,9 +487,12 @@ function upd(){
     document.getElementById('fMk'+y).textContent='- '+ff(mk[i]);
     document.getElementById('fCp'+y).textContent='- '+ff(cp);
     const brEl=document.getElementById('fBr'+y);brEl.textContent=fc(bri);brEl.className='vr '+(bri>=0?'pos':'neg');
+    document.getElementById('fSal'+y).textContent=salVerse>0?'- '+ff(salVerse):'0 €';
     document.getElementById('fCS'+y).textContent=csi>0?'- '+ff(csi):'0 €';
-    const nEl=document.getElementById('fN'+y);nEl.textContent=fc(ni);nEl.className=ni>=0?'pos':'neg';
+    const entEl=document.getElementById('fEnt'+y);entEl.textContent=fc(entResult);entEl.className=entResult>=0?'pos':'neg';
+    const nEl=document.getElementById('fN'+y);nEl.textContent=fc(netPerso);nEl.className=netPerso>=0?'pos':'neg';
     const ncEl=document.getElementById('fNC'+y);ncEl.textContent=fc(fCum);ncEl.className=fCum>=0?'pos':'neg';
+    const ecEl=document.getElementById('fEC'+y);ecEl.textContent=fc(fEntCum);ecEl.className=fEntCum>=0?'pos':'neg';
     prevTot=totY[i];
   }
 
@@ -495,7 +535,7 @@ function upd(){
   // KPI
   document.getElementById('kR5').textContent=totY[4]+' actifs';
   const kf=document.getElementById('kF5');kf.textContent=fc(fNetArr[4]);kf.className='mc-v '+(fNetArr[4]>=0?'pos':'neg');
-  document.getElementById('kCA5').textContent=ff(caReseau[4]);
+  const kfe=document.getElementById('kFEntreprise');kfe.textContent=fc(fEntCumArr[4]);kfe.className='mc-v '+(fEntCumArr[4]>=0?'pos':'neg');
   const ka=document.getElementById('kA5');ka.textContent=fc(aNetArr[4]);ka.className='mc-v '+(aNetArr[4]>=0?'pos':'neg');
   const kr=document.getElementById('kROI');kr.textContent=roi5+' %';kr.className='mc-v '+(roi5>=0?'pos':'neg');
 
@@ -513,22 +553,24 @@ function upd(){
     ab.innerHTML=msg;
   }
 
-  // Charts
+  // Charts — net perso franchiseur + résultat entreprise cumulé + franchisé
   const labels=['An 1','An 2','An 3','An 4','An 5'];
   if(c1){
     c1.data.datasets[0].data=fNetArr;
-    c1.data.datasets[1].data=aNetArr;
+    c1.data.datasets[1].data=fEntArr;
+    c1.data.datasets[2].data=aNetArr;
     c1.update();
-    c2.data.datasets[0].data=caReseau;
+    c2.data.datasets[0].data=fEntCumArr;
     c2.update();
   } else {
     c1=new Chart(document.getElementById('ch1'),{type:'bar',data:{labels,datasets:[
-      {label:'Franchiseur (net après CS)',data:fNetArr,backgroundColor:'#185FA5',borderRadius:5},
-      {label:'Franchisé (net après CS)',data:aNetArr,backgroundColor:'#3B6D11',borderRadius:5}
+      {label:'Net perso franchiseur',data:fNetArr,backgroundColor:'#185FA5',borderRadius:5},
+      {label:'Résultat entreprise / an',data:fEntArr,backgroundColor:'#AFA9EC',borderRadius:5},
+      {label:'Net perso franchisé',data:aNetArr,backgroundColor:'#3B6D11',borderRadius:5}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+' : '+Math.round(ctx.raw).toLocaleString('fr-FR')+' €'}}},scales:{y:{ticks:{callback:v=>(v<0?'-':'')+Math.abs(Math.round(v/1000))+'k €'}}}}});
     c2=new Chart(document.getElementById('ch2'),{type:'bar',data:{labels,datasets:[
-      {label:'CA réseau',data:caReseau,backgroundColor:'#AFA9EC',borderRadius:5}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'CA réseau : '+Math.round(ctx.raw).toLocaleString('fr-FR')+' €'}}},scales:{y:{ticks:{callback:v=>Math.round(v/1000)+'k €'}}}}});
+      {label:'Résultat entreprise cumulé',data:fEntCumArr,backgroundColor:'#534AB7',borderRadius:5}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Résultat entreprise cumulé : '+Math.round(ctx.raw).toLocaleString('fr-FR')+' €'}}},scales:{y:{ticks:{callback:v=>(v<0?'-':'')+Math.abs(Math.round(v/1000))+'k €'}}}}});
   }
 }
 upd();
