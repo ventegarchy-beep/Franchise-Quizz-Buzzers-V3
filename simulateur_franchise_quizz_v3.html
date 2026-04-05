@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulateur Franchise Quizz V3 — 5 ans</title>
+<title>Simulateur Franchise Quizz V3 — 5 ans · Apport + Multi-licenciés</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -12,13 +12,14 @@
   --am:#854F0B;--am-bg:#FAEEDA;--am-lt:#FAC775;
   --rd:#A32D2D;--rd-bg:#FCEBEB;
   --pu:#534AB7;--pu-bg:#EEEDFE;--pu-lt:#CECBF6;
+  --te:#0F6E56;--te-bg:#E1F5EE;--te-lt:#9FE1CB;
   --bg:#F7F6F2;--sf:#FFFFFF;
   --bdr:rgba(0,0,0,.10);--bdrm:rgba(0,0,0,.18);
   --tx:#1a1a18;--tx2:#5F5E5A;--tx3:#888780;
   --r:12px;--rs:8px
 }
 body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.55}
-.page{max-width:1020px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.page{max-width:1040px;margin:0 auto;padding:2rem 1.5rem 5rem}
 header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bdr)}
 header h1{font-size:21px;font-weight:700;margin-bottom:5px}
 header p{color:var(--tx2);font-size:13px}
@@ -27,82 +28,92 @@ section{margin-bottom:2rem}
 .card{background:var(--sf);border:1px solid var(--bdr);border-radius:var(--r);padding:1.25rem 1.5rem}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
 .g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.mc{background:var(--bg);border-radius:var(--rs);padding:.9rem 1rem}
+.mc{background:var(--bg);border-radius:var(--rs);padding:.85rem 1rem}
 .mc-l{font-size:11px;color:var(--tx2);margin-bottom:3px}
-.mc-v{font-size:17px;font-weight:700}
+.mc-v{font-size:16px;font-weight:700}
 .mc-s{font-size:11px;color:var(--tx3);margin-top:2px}
+.mc-te{background:var(--te-bg)} .mc-bl{background:var(--bl-bg)} .mc-am{background:var(--am-bg)}
 .pr{display:flex;align-items:center;gap:11px;margin-bottom:12px}
 .pr:last-child{margin-bottom:0}
 .pl{font-size:13px;color:var(--tx2);min-width:230px;flex-shrink:0}
-.pv{font-size:13px;font-weight:700;min-width:80px;text-align:right}
+.pv{font-size:13px;font-weight:700;min-width:82px;text-align:right}
 input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:var(--bdrm);border-radius:2px;outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--bl);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--bl);border:2px solid #fff}
-.toggle-card{background:var(--sf);border:2px solid var(--bl-lt);border-radius:var(--r);padding:1.1rem 1.5rem;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:1.5rem}
-.toggle-card .label-big{font-size:15px;font-weight:600;flex:1;min-width:200px}
+.toggle-card{background:var(--sf);border:2px solid var(--bl-lt);border-radius:var(--r);padding:1rem 1.5rem;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:1.25rem}
+.toggle-card.te{border-color:var(--te-lt)}
+.toggle-card .lb{font-size:14px;font-weight:600;flex:1;min-width:180px}
 .sw{position:relative;display:inline-block;width:52px;height:28px;flex-shrink:0}
 .sw input{opacity:0;width:0;height:0}
 .sw .tr{position:absolute;cursor:pointer;inset:0;background:var(--bdrm);border-radius:14px;transition:.25s}
 .sw .tr:before{content:'';position:absolute;width:22px;height:22px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s}
 .sw input:checked+.tr{background:var(--bl)}
 .sw input:checked+.tr:before{transform:translateX(24px)}
-.toggle-status{font-size:13px;color:var(--tx2)}
-.stat-select{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.stat-btn{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid var(--bdrm);background:var(--bg);cursor:pointer;color:var(--tx2)}
+.sw-te input:checked+.tr{background:var(--te)}
+.toggle-status{font-size:12px;color:var(--tx2);min-width:140px}
+.stat-select{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}
+.stat-btn{font-size:12px;padding:3px 11px;border-radius:20px;border:1px solid var(--bdrm);background:var(--bg);cursor:pointer;color:var(--tx2)}
 .stat-btn.active{background:var(--bl);color:#fff;border-color:var(--bl)}
 .mix-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13px}
 .mix-row:last-child{margin-bottom:0}
 .mix-lbl{min-width:195px;flex-shrink:0;color:var(--tx2)}
-.mix-val{min-width:50px;text-align:right;font-weight:700}
+.mix-val{min-width:46px;text-align:right;font-weight:700}
 .mix-ca{min-width:78px;text-align:right;color:var(--tx3);font-size:12px}
 .bw{flex:1;height:7px;background:var(--bdr);border-radius:4px;overflow:hidden}
 .bf{height:100%;border-radius:4px;transition:width .3s}
-.divider{border:none;border-top:1px solid var(--bdr);margin:1.1rem 0}
+.divider{border:none;border-top:1px solid var(--bdr);margin:1rem 0}
 .yt{width:100%;border-collapse:collapse;font-size:12.5px;min-width:560px}
 .yt th{font-size:11px;font-weight:700;color:var(--tx3);text-align:right;padding:5px 8px;border-bottom:1.5px solid var(--bdrm);white-space:nowrap}
 .yt th:first-child{text-align:left}
 .yt td{padding:5px 8px;text-align:right;font-variant-numeric:tabular-nums;border-bottom:1px solid var(--bdr);white-space:nowrap}
-.yt td:first-child{text-align:left;color:var(--tx2);white-space:normal;min-width:175px}
-.yt .sh td{font-size:10.5px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;padding-top:12px;padding-bottom:3px;border-bottom:none}
-.yt .tot td{font-weight:700;color:var(--tx);border-top:1.5px solid var(--bdrm);border-bottom:1.5px solid var(--bdrm);padding-top:7px;padding-bottom:7px}
+.yt td:first-child{text-align:left;color:var(--tx2);white-space:normal;min-width:180px}
+.yt .sh td{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;padding-top:12px;padding-bottom:2px;border-bottom:none}
+.yt .tot td{font-weight:700;color:var(--tx);border-top:1.5px solid var(--bdrm);border-bottom:1.5px solid var(--bdrm);padding-top:6px;padding-bottom:6px}
 .yt .cs-row td{background:var(--pu-bg);color:var(--pu)}
 .yt .cs-row td:first-child{color:var(--pu);font-weight:500}
 .yt .sal-row td{background:var(--bl-bg);color:var(--bl)}
 .yt .sal-row td:first-child{color:var(--bl);font-weight:500}
+.yt .amo-row td{background:#F1EFE8;color:#444}
+.yt .amo-row td:first-child{color:#444;font-weight:500}
 .yt .entrep-row td{background:var(--gr-bg);font-weight:600}
 .yt .entrep-row td:first-child{color:var(--gr)}
-.yt .net-row td{font-size:14px;font-weight:700;border-top:2.5px solid var(--tx);border-bottom:2.5px solid var(--tx);padding-top:9px;padding-bottom:9px}
+.yt .multi-row td{background:var(--te-bg);color:var(--te)}
+.yt .multi-row td:first-child{color:var(--te);font-weight:500}
+.yt .net-row td{font-size:14px;font-weight:700;border-top:2.5px solid var(--tx);border-bottom:2.5px solid var(--tx);padding-top:8px;padding-bottom:8px}
 .yt .cum td{font-size:11.5px;color:var(--tx3);border-bottom:none}
-.pos{color:var(--gr)!important}
-.neg{color:var(--rd)!important}
-.info-box{background:var(--bl-bg);border:1px solid var(--bl-lt);border-radius:var(--rs);padding:.85rem 1rem;font-size:13px;color:#0C447C;line-height:1.6;margin-bottom:1rem}
-.warn-box{background:var(--am-bg);border:1px solid var(--am-lt);border-radius:var(--rs);padding:.85rem 1rem;font-size:13px;color:var(--am);line-height:1.6;margin-bottom:1rem}
-.cs-box{background:var(--pu-bg);border:1px solid var(--pu-lt);border-radius:var(--rs);padding:.85rem 1rem;font-size:13px;color:var(--pu);margin-bottom:1rem;line-height:1.6}
-.info-box strong,.warn-box strong,.cs-box strong{font-weight:700}
-.leg{display:flex;gap:16px;font-size:12px;color:var(--tx2);margin-bottom:9px;flex-wrap:wrap}
+.pos{color:var(--gr)!important} .neg{color:var(--rd)!important}
+.info-box{background:var(--bl-bg);border:1px solid var(--bl-lt);border-radius:var(--rs);padding:.8rem 1rem;font-size:13px;color:#0C447C;line-height:1.6;margin-bottom:1rem}
+.warn-box{background:var(--am-bg);border:1px solid var(--am-lt);border-radius:var(--rs);padding:.8rem 1rem;font-size:13px;color:var(--am);line-height:1.6;margin-bottom:1rem}
+.te-box{background:var(--te-bg);border:1px solid var(--te-lt);border-radius:var(--rs);padding:.8rem 1rem;font-size:13px;color:var(--te);line-height:1.6;margin-bottom:1rem}
+.cs-box{background:var(--pu-bg);border:1px solid var(--pu-lt);border-radius:var(--rs);padding:.8rem 1rem;font-size:13px;color:var(--pu);line-height:1.6;margin-bottom:1rem}
+.apport-box{background:#F1EFE8;border:1px solid #B4B2A9;border-radius:var(--rs);padding:.8rem 1rem;font-size:13px;color:#444;line-height:1.6;margin-bottom:1rem}
+.info-box strong,.warn-box strong,.te-box strong,.cs-box strong,.apport-box strong{font-weight:700}
+.leg{display:flex;gap:15px;font-size:12px;color:var(--tx2);margin-bottom:8px;flex-wrap:wrap}
 .leg span{display:flex;align-items:center;gap:5px}
 .ls{width:10px;height:10px;border-radius:2px;display:inline-block}
-.chart-wrap{width:100%;overflow:hidden;border-radius:var(--rs)}
 canvas{display:block;width:100%!important}
 footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-size:12px;color:var(--tx3);text-align:center}
-@media(max-width:700px){.g2{grid-template-columns:1fr}.g5{grid-template-columns:1fr 1fr}.pl,.mix-lbl{min-width:150px}}
+@media(max-width:700px){.g2,.g3{grid-template-columns:1fr}.g4,.g5{grid-template-columns:1fr 1fr}.pl,.mix-lbl{min-width:150px}}
 </style>
 </head>
 <body>
 <div class="page">
 
 <header>
-  <h1>Simulateur Franchise Quizz Buzzers — V3 · 5 ans · Salaire & Résultat entreprise</h1>
-  <p>Charges sociales · Rémunération personnelle du franchiseur séparée du résultat laissé en société · Franchiseur animateur ou développeur pur</p>
+  <h1>Simulateur Franchise Quizz Buzzers — V3 · 5 ans · Apport + Multi-licenciés</h1>
+  <p>Matériel franchiseur en apport en nature · Salaire séparé du résultat société · Multi-licenciés régionaux dès l'an 3 avec partage de redevances</p>
 </header>
 
+<!-- TOGGLE PRESTAS FRANCHISEUR -->
 <div class="toggle-card">
-  <div class="label-big">Le franchiseur anime-t-il ses propres prestas ?</div>
+  <div class="lb">Le franchiseur anime-t-il ses propres prestas ?</div>
   <label class="sw"><input type="checkbox" id="hasP" onchange="upd()"><span class="tr"></span></label>
   <div class="toggle-status" id="toggleLbl">Non — développeur pur</div>
 </div>
 
+<!-- PRESTAS FRANCHISEUR -->
 <section id="secFP" style="display:none">
   <div class="st">Mix prestas franchiseur — ses propres animations</div>
   <div class="card">
@@ -112,50 +123,72 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
     <div class="mix-row"><span class="mix-lbl">CE scénique + buzzers (2 000 €)</span><input type="range" id="fpE" min="0" max="52" step="1" value="3" oninput="upd()"><span class="mix-val" id="fpEV">3</span><span class="mix-ca" id="cfE">6 000 €</span></div>
     <div class="divider"></div>
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px">
-      <span style="color:var(--tx2)">Total prestas / an : <strong id="ftotP">22</strong></span>
+      <span style="color:var(--tx2)">Total / an : <strong id="ftotP">22</strong></span>
       <span style="color:var(--tx2)">CA propre : <strong id="ftotCA" style="color:var(--bl)">21 300 €</strong></span>
     </div>
   </div>
 </section>
 
+<!-- APPORT EN NATURE -->
 <section>
-  <div class="st">Paramètres réseau & franchise</div>
+  <div class="st">Apport en nature — matériel franchiseur</div>
+  <div class="apport-box">
+    <strong>Principe :</strong> le franchiseur possède déjà son matériel (buzzers, sono, équipements scéniques). En créant sa société, il l'apporte en nature à sa valeur vénale. Pas de sortie de cash — mais l'amortissement reste une charge réelle dans la P&L (diminue le résultat imposable sans impacter la trésorerie). La valeur d'apport constitue son capital social initial.
+  </div>
   <div class="card">
-    <div class="pr"><span class="pl">Droit d'entrée par franchisé</span><input type="range" id="de" min="1000" max="10000" step="500" value="4000" oninput="upd()"><span class="pv" id="deV">4 000 €</span></div>
-    <div class="pr"><span class="pl">Redevance mensuelle / franchisé</span><input type="range" id="rv" min="50" max="600" step="25" value="200" oninput="upd()"><span class="pv" id="rvV">200 €</span></div>
-    <div class="pr"><span class="pl">Franchisés recrutés — an 1</span><input type="range" id="n1" min="1" max="8" step="1" value="3" oninput="upd()"><span class="pv" id="n1V">3</span></div>
-    <div class="pr"><span class="pl">Franchisés recrutés — an 2</span><input type="range" id="n2" min="1" max="10" step="1" value="5" oninput="upd()"><span class="pv" id="n2V">5</span></div>
-    <div class="pr"><span class="pl">Franchisés recrutés — an 3 à 5 / an</span><input type="range" id="n3" min="0" max="10" step="1" value="4" oninput="upd()"><span class="pv" id="n3V">4 / an</span></div>
-    <div class="pr"><span class="pl">Coût matériel franchisé</span><input type="range" id="mt" min="12000" max="22000" step="500" value="17500" oninput="upd()"><span class="pv" id="mtV">17 500 €</span></div>
-    <div class="pr"><span class="pl">Croissance CA franchisé an 3→5 (%/an)</span><input type="range" id="gro" min="0" max="25" step="1" value="10" oninput="upd()"><span class="pv" id="groV">+10 %</span></div>
+    <div class="pr"><span class="pl">Valeur d'apport du matériel</span><input type="range" id="matF" min="5000" max="22000" step="500" value="17500" oninput="upd()"><span class="pv" id="matFV">17 500 €</span></div>
+    <div class="g3" style="margin-top:1rem">
+      <div class="mc"><div class="mc-l">Capital social initial</div><div class="mc-v" id="kCapital">17 500 €</div><div class="mc-s">apport en nature</div></div>
+      <div class="mc"><div class="mc-l">Amortissement / an</div><div class="mc-v" id="kAmoF">3 500 €</div><div class="mc-s">sur 5 ans (charge non-cash)</div></div>
+      <div class="mc"><div class="mc-l">Valeur nette comptable an 5</div><div class="mc-v" id="kVNC">0 €</div><div class="mc-s">matériel amorti</div></div>
+    </div>
   </div>
 </section>
 
+<!-- PARAMS RÉSEAU -->
+<section>
+  <div class="st">Paramètres réseau & franchise — licenciés classiques</div>
+  <div class="card">
+    <div class="pr"><span class="pl">Droit d'entrée an 1–2</span><input type="range" id="de" min="1000" max="8000" step="500" value="4000" oninput="upd()"><span class="pv" id="deV">4 000 €</span></div>
+    <div class="pr"><span class="pl">Redevance mensuelle an 1–2</span><input type="range" id="rv" min="50" max="500" step="25" value="200" oninput="upd()"><span class="pv" id="rvV">200 €</span></div>
+    <div class="pr"><span class="pl">Franchisés recrutés — an 1</span><input type="range" id="n1" min="1" max="8" step="1" value="3" oninput="upd()"><span class="pv" id="n1V">3</span></div>
+    <div class="pr"><span class="pl">Franchisés recrutés — an 2</span><input type="range" id="n2" min="1" max="10" step="1" value="5" oninput="upd()"><span class="pv" id="n2V">5</span></div>
+    <div class="pr"><span class="pl">Franchisés directs / an — an 3 à 5</span><input type="range" id="n3" min="0" max="10" step="1" value="3" oninput="upd()"><span class="pv" id="n3V">3 / an</span></div>
+    <div class="pr"><span class="pl">Coût matériel franchisé</span><input type="range" id="mt" min="12000" max="22000" step="500" value="17500" oninput="upd()"><span class="pv" id="mtV">17 500 €</span></div>
+    <div class="pr"><span class="pl">Croissance CA franchisé an 3→5 (%/an)</span><input type="range" id="gro" min="0" max="25" step="1" value="10" oninput="upd()"><span class="pv" id="groV">+10 %</span></div>
+    <div class="divider"></div>
+    <div style="font-size:12px;color:var(--tx3)">Tarifs an 3+ pour les <em>nouveaux</em> licenciés classiques (réseau établi)</div>
+    <div class="pr" style="margin-top:.75rem"><span class="pl">Droit d'entrée an 3+ (majoration)</span><input type="range" id="deUp" min="0" max="3000" step="500" value="1000" oninput="upd()"><span class="pv" id="deUpV">+ 1 000 €</span></div>
+    <div class="pr"><span class="pl">Redevance mensuelle an 3+ (majoration)</span><input type="range" id="rvUp" min="0" max="200" step="25" value="50" oninput="upd()"><span class="pv" id="rvUpV">+ 50 €</span></div>
+  </div>
+</section>
+
+<!-- CHARGES SOCIALES -->
 <section>
   <div class="st">Charges sociales & statut</div>
   <div class="g2">
     <div class="card">
-      <div style="font-size:14px;font-weight:600;margin-bottom:.7rem">Franchiseur</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:.6rem">Franchiseur</div>
       <div class="stat-select">
         <button class="stat-btn" onclick="setSt('f','ae',this)">AE (22%)</button>
         <button class="stat-btn active" onclick="setSt('f','tns',this)">EURL/TNS (45%)</button>
         <button class="stat-btn" onclick="setSt('f','sasu',this)">SASU (70%)</button>
       </div>
-      <div class="pr" style="margin-top:1rem;margin-bottom:0">
-        <span class="pl" style="min-width:180px">Taux CS franchiseur</span>
+      <div class="pr" style="margin-top:.9rem;margin-bottom:0">
+        <span class="pl" style="min-width:170px">Taux CS franchiseur</span>
         <input type="range" id="csF" min="5" max="80" step="1" value="45" oninput="upd()">
         <span class="pv" id="csFV">45 %</span>
       </div>
     </div>
     <div class="card">
-      <div style="font-size:14px;font-weight:600;margin-bottom:.7rem">Franchisé</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:.6rem">Franchisé</div>
       <div class="stat-select">
         <button class="stat-btn active" onclick="setSt('a','ae',this)">AE (22%)</button>
         <button class="stat-btn" onclick="setSt('a','tns',this)">EURL/TNS (45%)</button>
         <button class="stat-btn" onclick="setSt('a','sasu',this)">SASU (70%)</button>
       </div>
-      <div class="pr" style="margin-top:1rem;margin-bottom:0">
-        <span class="pl" style="min-width:180px">Taux CS franchisé</span>
+      <div class="pr" style="margin-top:.9rem;margin-bottom:0">
+        <span class="pl" style="min-width:170px">Taux CS franchisé</span>
         <input type="range" id="csA" min="5" max="80" step="1" value="22" oninput="upd()">
         <span class="pv" id="csAV">22 %</span>
       </div>
@@ -163,31 +196,52 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
   </div>
 </section>
 
+<!-- CHARGES + SALAIRE FRANCHISEUR -->
 <section>
-  <div class="st">Charges de structure franchiseur (hors rémunération)</div>
+  <div class="st">Structure & rémunération franchiseur</div>
   <div class="card">
-    <div class="pr"><span class="pl">Charges structure / an</span><input type="range" id="cp" min="0" max="40000" step="1000" value="15000" oninput="upd()"><span class="pv" id="cpV">15 000 €</span></div>
-    <div style="font-size:12px;color:var(--tx3)">Véhicule, bureau, téléphone, assurances — hors salaire et CS.</div>
-  </div>
-</section>
-
-<section>
-  <div class="st">Rémunération franchiseur — salaire cible mensuel</div>
-  <div class="cs-box">
-    <strong>Principe :</strong> le franchiseur se verse un salaire mensuel brut soumis aux CS. Ce qui reste = <strong>résultat laissé dans la société</strong> (trésorerie, réserves, développement réseau). Curseur à 0 = tout laissé en entreprise.
-  </div>
-  <div class="card">
+    <div class="pr"><span class="pl">Charges structure / an (hors salaire)</span><input type="range" id="cp" min="0" max="40000" step="1000" value="12000" oninput="upd()"><span class="pv" id="cpV">12 000 €</span></div>
     <div class="pr"><span class="pl">Salaire mensuel cible (brut)</span><input type="range" id="salF" min="0" max="6000" step="100" value="2000" oninput="upd()"><span class="pv" id="salFV">2 000 €/mois</span></div>
     <div class="g3" style="margin-top:1rem">
       <div class="mc"><div class="mc-l">Salaire brut / an</div><div class="mc-v" id="salBrutAn">24 000 €</div></div>
-      <div class="mc"><div class="mc-l">CS sur salaire / an</div><div class="mc-v" id="salCSAn">—</div></div>
+      <div class="mc"><div class="mc-l">CS sur salaire</div><div class="mc-v" id="salCSAn">—</div></div>
       <div class="mc"><div class="mc-l">Net en poche / mois</div><div class="mc-v" id="salNetMois">—</div></div>
     </div>
   </div>
 </section>
 
+<!-- MULTI-LICENCIÉS -->
+<div class="toggle-card te">
+  <div class="lb">Activer les multi-licenciés régionaux (dès an 3)</div>
+  <label class="sw sw-te"><input type="checkbox" id="hasMulti" onchange="upd()"><span class="tr"></span></label>
+  <div class="toggle-status" id="multiLbl">Désactivé</div>
+</div>
+
+<section id="secMulti" style="display:none">
+  <div class="te-box">
+    <strong>Multi-licencié :</strong> animateur performant qui obtient une zone exclusive <em>régionale</em> (plusieurs dép.), paie un droit d'entrée et une redevance plus élevés, et recrute lui-même des sous-licenciés. Il partage les droits d'entrée et redevances de son sous-réseau avec le franchiseur selon la clé définie ci-dessous.
+  </div>
+  <div class="card">
+    <div class="pr"><span class="pl">Nb multi-licenciés recrutés / an (an 3-5)</span><input type="range" id="nbM" min="1" max="6" step="1" value="2" oninput="upd()"><span class="pv" id="nbMV">2 / an</span></div>
+    <div class="pr"><span class="pl">Droit d'entrée multi-licencié</span><input type="range" id="deM" min="3000" max="15000" step="500" value="8000" oninput="upd()"><span class="pv" id="deMV">8 000 €</span></div>
+    <div class="pr"><span class="pl">Redevance mensuelle multi-licencié</span><input type="range" id="rvM" min="200" max="700" step="25" value="350" oninput="upd()"><span class="pv" id="rvMV">350 €/mois</span></div>
+    <div class="pr"><span class="pl">Sous-licenciés recrutés / multi / an</span><input type="range" id="nbSub" min="1" max="8" step="1" value="3" oninput="upd()"><span class="pv" id="nbSubV">3 / an</span></div>
+    <div class="divider"></div>
+    <div style="font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:.75rem">Partage des revenus des sous-licenciés (franchiseur ← → multi-licencié)</div>
+    <div class="pr"><span class="pl">% des droits d'entrée sous-licencié → franchiseur</span><input type="range" id="pctDE" min="20" max="80" step="5" value="50" oninput="upd()"><span class="pv" id="pctDEV">50 %</span></div>
+    <div class="pr"><span class="pl">% des redevances sous-licencié → franchiseur</span><input type="range" id="pctRV" min="20" max="80" step="5" value="60" oninput="upd()"><span class="pv" id="pctRVV">60 %</span></div>
+    <div class="g4" style="margin-top:1rem">
+      <div class="mc mc-te"><div class="mc-l">Sous-licenciés an 5 (cumulés)</div><div class="mc-v" id="kSubAn5">—</div></div>
+      <div class="mc mc-te"><div class="mc-l">Revenu multi an 5 (net)</div><div class="mc-v" id="kMultiNet5">—</div></div>
+      <div class="mc mc-bl"><div class="mc-l">Revenu multi → franchiseur / an 5</div><div class="mc-v" id="kMultiToF5">—</div></div>
+      <div class="mc mc-bl"><div class="mc-l">Réseau total an 5</div><div class="mc-v" id="kReseauTotal5">—</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MIX PRESTAS FRANCHISÉ -->
 <section>
-  <div class="st">Mix de prestations — franchisé type (nombre / an en croisière)</div>
+  <div class="st">Mix de prestations — franchisé type (croisière)</div>
   <div class="card">
     <div class="mix-row"><span class="mix-lbl">Bar / brasserie (450 €)</span><input type="range" id="pB" min="0" max="52" step="1" value="10" oninput="upd()"><span class="mix-val" id="pBV">10</span><span class="mix-ca" id="cB">4 500 €</span></div>
     <div class="mix-row"><span class="mix-lbl">Camping sans scène (900 €)</span><input type="range" id="pC" min="0" max="52" step="1" value="6" oninput="upd()"><span class="mix-val" id="pCV">6</span><span class="mix-ca" id="cC">5 400 €</span></div>
@@ -199,7 +253,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
       <span style="color:var(--tx2)">CA base : <strong id="totCA" style="color:var(--bl)">29 500 €</strong></span>
       <span style="color:var(--tx3);font-size:12px" id="pmois">≈ 2,4 / mois</span>
     </div>
-    <div style="margin-top:.9rem;display:grid;gap:5px">
+    <div style="margin-top:.85rem;display:grid;gap:5px">
       <div class="mix-row" style="margin-bottom:0"><span class="mix-lbl" style="font-size:12px;color:var(--tx3)">Bar</span><div class="bw"><div class="bf" id="bbB" style="background:#185FA5"></div></div><span class="mix-ca" id="pbB">—</span></div>
       <div class="mix-row" style="margin-bottom:0"><span class="mix-lbl" style="font-size:12px;color:var(--tx3)">Camping</span><div class="bw"><div class="bf" id="bbC" style="background:#5DCAA5"></div></div><span class="mix-ca" id="pbC">—</span></div>
       <div class="mix-row" style="margin-bottom:0"><span class="mix-lbl" style="font-size:12px;color:var(--tx3)">Camping buzzers</span><div class="bw"><div class="bf" id="bbCB" style="background:#3B6D11"></div></div><span class="mix-ca" id="pbCB">—</span></div>
@@ -208,11 +262,12 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
   </div>
 </section>
 
+<!-- KPI -->
 <section>
   <div class="st">Indicateurs clés — fin an 5</div>
   <div class="g5" style="margin-bottom:1rem">
-    <div class="mc"><div class="mc-l">Réseau an 5</div><div class="mc-v" id="kR5">—</div><div class="mc-s">franchisés actifs</div></div>
-    <div class="mc"><div class="mc-l">Net perso franchiseur an 5</div><div class="mc-v" id="kF5">—</div><div class="mc-s">salaire net / an</div></div>
+    <div class="mc"><div class="mc-l">Réseau directs an 5</div><div class="mc-v" id="kR5">—</div><div class="mc-s">licenciés directs</div></div>
+    <div class="mc"><div class="mc-l">Net perso franchiseur an 5</div><div class="mc-v" id="kF5">—</div><div class="mc-s">salaire net</div></div>
     <div class="mc"><div class="mc-l">Résultat entreprise cumulé</div><div class="mc-v" id="kFEnt">—</div><div class="mc-s">tréso société 5 ans</div></div>
     <div class="mc"><div class="mc-l">Net franchisé an 5</div><div class="mc-v" id="kA5">—</div><div class="mc-s">après CS</div></div>
     <div class="mc"><div class="mc-l">ROI franchisé 5 ans</div><div class="mc-v" id="kROI">—</div><div class="mc-s">sur capital investi</div></div>
@@ -220,26 +275,29 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
   <div id="alertBox" style="display:none"></div>
 </section>
 
+<!-- P&L FRANCHISEUR -->
 <section>
   <div class="st">P&L Franchiseur — 5 ans</div>
   <div class="card" style="overflow-x:auto">
     <table class="yt">
-      <thead><tr><th style="text-align:left;min-width:175px">Ligne</th><th>An 1</th><th>An 2</th><th>An 3</th><th>An 4</th><th>An 5</th></tr></thead>
+      <thead><tr><th style="text-align:left;min-width:185px">Ligne</th><th>An 1</th><th>An 2</th><th>An 3</th><th>An 4</th><th>An 5</th></tr></thead>
       <tbody>
-        <tr class="sh"><td colspan="6">Réseau</td></tr>
-        <tr><td>Nouveaux franchisés</td><td id="fNb1">—</td><td id="fNb2">—</td><td id="fNb3">—</td><td id="fNb4">—</td><td id="fNb5">—</td></tr>
-        <tr><td>Total réseau actif</td><td id="fTt1">—</td><td id="fTt2">—</td><td id="fTt3">—</td><td id="fTt4">—</td><td id="fTt5">—</td></tr>
+        <tr class="sh"><td colspan="6">Réseau direct (licenciés classiques)</td></tr>
+        <tr><td>Nouveaux recrutés</td><td id="fNb1">—</td><td id="fNb2">—</td><td id="fNb3">—</td><td id="fNb4">—</td><td id="fNb5">—</td></tr>
+        <tr><td>Total réseau direct</td><td id="fTt1">—</td><td id="fTt2">—</td><td id="fTt3">—</td><td id="fTt4">—</td><td id="fTt5">—</td></tr>
         <tr class="sh"><td colspan="6">Produits</td></tr>
         <tr id="fRowP" style="display:none"><td>CA prestas propres</td><td id="fPr1">—</td><td id="fPr2">—</td><td id="fPr3">—</td><td id="fPr4">—</td><td id="fPr5">—</td></tr>
-        <tr><td>Droits d'entrée</td><td id="fDe1">—</td><td id="fDe2">—</td><td id="fDe3">—</td><td id="fDe4">—</td><td id="fDe5">—</td></tr>
-        <tr><td>Redevances réseau</td><td id="fRv1">—</td><td id="fRv2">—</td><td id="fRv3">—</td><td id="fRv4">—</td><td id="fRv5">—</td></tr>
+        <tr><td>Droits d'entrée directs</td><td id="fDe1">—</td><td id="fDe2">—</td><td id="fDe3">—</td><td id="fDe4">—</td><td id="fDe5">—</td></tr>
+        <tr><td>Redevances directs</td><td id="fRv1">—</td><td id="fRv2">—</td><td id="fRv3">—</td><td id="fRv4">—</td><td id="fRv5">—</td></tr>
+        <tr id="fRowMulti" style="display:none"><td>Revenus multi-licenciés (DE+rev+% sous)</td><td id="fMu1">—</td><td id="fMu2">—</td><td id="fMu3">—</td><td id="fMu4">—</td><td id="fMu5">—</td></tr>
         <tr class="tot"><td>CA total</td><td id="fCA1">—</td><td id="fCA2">—</td><td id="fCA3">—</td><td id="fCA4">—</td><td id="fCA5">—</td></tr>
         <tr class="sh"><td colspan="6">Charges d'exploitation</td></tr>
         <tr><td>Juridique</td><td id="fJu1">—</td><td id="fJu2">—</td><td id="fJu3">—</td><td id="fJu4">—</td><td id="fJu5">—</td></tr>
-        <tr><td>Formation franchisés</td><td id="fFo1">—</td><td id="fFo2">—</td><td id="fFo3">—</td><td id="fFo4">—</td><td id="fFo5">—</td></tr>
-        <tr><td>Support & animation</td><td id="fSu1">—</td><td id="fSu2">—</td><td id="fSu3">—</td><td id="fSu4">—</td><td id="fSu5">—</td></tr>
+        <tr><td>Formation licenciés</td><td id="fFo1">—</td><td id="fFo2">—</td><td id="fFo3">—</td><td id="fFo4">—</td><td id="fFo5">—</td></tr>
+        <tr><td>Support & animation réseau</td><td id="fSu1">—</td><td id="fSu2">—</td><td id="fSu3">—</td><td id="fSu4">—</td><td id="fSu5">—</td></tr>
         <tr><td>Commercial & marketing</td><td id="fCo1">—</td><td id="fCo2">—</td><td id="fCo3">—</td><td id="fCo4">—</td><td id="fCo5">—</td></tr>
         <tr><td>Charges structure</td><td id="fCp1">—</td><td id="fCp2">—</td><td id="fCp3">—</td><td id="fCp4">—</td><td id="fCp5">—</td></tr>
+        <tr class="amo-row"><td>Amortissement matériel (apport)</td><td id="fAmo1">—</td><td id="fAmo2">—</td><td id="fAmo3">—</td><td id="fAmo4">—</td><td id="fAmo5">—</td></tr>
         <tr class="tot"><td>Résultat avant rémunération</td><td id="fBr1">—</td><td id="fBr2">—</td><td id="fBr3">—</td><td id="fBr4">—</td><td id="fBr5">—</td></tr>
         <tr class="sal-row"><td>Salaire franchiseur (brut)</td><td id="fSal1">—</td><td id="fSal2">—</td><td id="fSal3">—</td><td id="fSal4">—</td><td id="fSal5">—</td></tr>
         <tr class="cs-row"><td>Charges sociales (<span id="csFpct">45</span>% sur salaire)</td><td id="fCS1">—</td><td id="fCS2">—</td><td id="fCS3">—</td><td id="fCS4">—</td><td id="fCS5">—</td></tr>
@@ -252,11 +310,40 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
   </div>
 </section>
 
-<section>
-  <div class="st">P&L Franchisé type — 5 ans</div>
+<!-- P&L MULTI-LICENCIÉ (conditionnel) -->
+<section id="secMultiPL" style="display:none">
+  <div class="st">P&L Multi-licencié type — an 2 d'activité (régime de croisière)</div>
   <div class="card" style="overflow-x:auto">
     <table class="yt">
-      <thead><tr><th style="text-align:left;min-width:175px">Ligne</th><th>An 1</th><th>An 2</th><th>An 3</th><th>An 4</th><th>An 5</th></tr></thead>
+      <thead><tr><th style="text-align:left;min-width:185px">Ligne</th><th>Montant</th><th>Détail</th></tr></thead>
+      <tbody>
+        <tr class="sh"><td colspan="3">Produits</td></tr>
+        <tr><td>CA prestas propres (mix complet)</td><td id="mCA">—</td><td id="mCAd" style="color:var(--tx3);font-size:12px">—</td></tr>
+        <tr class="multi-row"><td>Commission DE sous-licenciés (sa part)</td><td id="mCDE">—</td><td id="mCDEd" style="color:var(--te);font-size:12px">—</td></tr>
+        <tr class="multi-row"><td>Commission redevances sous-licenciés (sa part)</td><td id="mCRV">—</td><td id="mCRVd" style="color:var(--te);font-size:12px">—</td></tr>
+        <tr class="tot"><td>Produits totaux</td><td id="mProd">—</td><td></td></tr>
+        <tr class="sh"><td colspan="3">Charges</td></tr>
+        <tr><td>Amortissement matériel (5 ans)</td><td id="mAmo">—</td><td></td></tr>
+        <tr><td>Licence buzzers</td><td>- 700 €</td><td></td></tr>
+        <tr><td>Véhicule</td><td>- 3 500 €</td><td></td></tr>
+        <tr><td>Redevance franchiseur (tarif multi)</td><td id="mRv">—</td><td id="mRvd" style="color:var(--tx3);font-size:12px">—</td></tr>
+        <tr><td>Support sous-réseau / frais divers</td><td>- 2 000 €</td><td style="color:var(--tx3);font-size:12px">Temps dédié recrutement & animation</td></tr>
+        <tr><td>Assurances</td><td>- 1 500 €</td><td></td></tr>
+        <tr class="tot"><td>Résultat avant CS</td><td id="mBr">—</td><td></td></tr>
+        <tr class="cs-row"><td>Charges sociales (<span id="csMultiPct">22</span>%)</td><td id="mCS">—</td><td></td></tr>
+        <tr class="net-row"><td>Revenu net disponible</td><td id="mNet">—</td><td id="mNetd" style="font-size:12px"></td></tr>
+        <tr class="cum"><td>vs. licencié classique an 2</td><td id="mDelta">—</td><td id="mDeltad" style="color:var(--te);font-size:12px">différence de revenus</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- P&L FRANCHISÉ -->
+<section>
+  <div class="st">P&L Franchisé direct type — 5 ans</div>
+  <div class="card" style="overflow-x:auto">
+    <table class="yt">
+      <thead><tr><th style="text-align:left;min-width:185px">Ligne</th><th>An 1</th><th>An 2</th><th>An 3</th><th>An 4</th><th>An 5</th></tr></thead>
       <tbody>
         <tr class="sh"><td colspan="6">Activité (% du mix croisière)</td></tr>
         <tr><td>Coefficient</td><td>70%</td><td>100%</td><td id="aC3">—</td><td id="aC4">—</td><td id="aC5">—</td></tr>
@@ -273,7 +360,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
         <tr class="cum"><td>Cumulé net (après invest.)</td><td id="aNC1">—</td><td id="aNC2">—</td><td id="aNC3">—</td><td id="aNC4">—</td><td id="aNC5">—</td></tr>
       </tbody>
     </table>
-    <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--tx2)">
+    <div style="margin-top:.85rem;display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--tx2)">
       <span>Capital investi : <strong id="invest">—</strong></span>
       <span>Break-even : <strong id="be">—</strong></span>
       <span>ROI 5 ans : <strong id="roi">—</strong></span>
@@ -281,23 +368,25 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
   </div>
 </section>
 
+<!-- GRAPHIQUES -->
 <section>
-  <div class="st">Résultats nets annuels — franchiseur vs franchisé</div>
+  <div class="st">Résultats nets annuels comparés</div>
   <div class="leg">
     <span><span class="ls" style="background:#185FA5"></span>Net perso franchiseur</span>
     <span><span class="ls" style="background:#AFA9EC"></span>Résultat entreprise / an</span>
-    <span><span class="ls" style="background:#3B6D11"></span>Net perso franchisé</span>
+    <span><span class="ls" style="background:#3B6D11"></span>Net franchisé direct</span>
+    <span id="legMulti" style="display:none"><span class="ls" style="background:#0F6E56"></span>Net multi-licencié</span>
   </div>
-  <div class="chart-wrap"><canvas id="ch1" height="260"></canvas></div>
+  <div style="position:relative;width:100%"><canvas id="ch1" height="270"></canvas></div>
 </section>
 
 <section>
   <div class="st">Résultat entreprise cumulé (trésorerie laissée en société)</div>
   <div class="leg"><span><span class="ls" style="background:#534AB7"></span>Cumul résultat entreprise</span></div>
-  <div class="chart-wrap"><canvas id="ch2" height="200"></canvas></div>
+  <div style="position:relative;width:100%"><canvas id="ch2" height="200"></canvas></div>
 </section>
 
-<footer>Simulateur V3 — 5 ans · Généré avec Claude (Anthropic) · Indicatif — à valider avec un expert-comptable.</footer>
+<footer>Simulateur V3 · Apport en nature + Multi-licenciés · Généré avec Claude (Anthropic) · Indicatif — à valider avec un expert-comptable.</footer>
 </div>
 
 <script>
@@ -307,154 +396,132 @@ function g(id){return document.getElementById(id);}
 function t(id,v){var e=g(id);if(e)e.textContent=v;}
 function pn(id,v,cls){var e=g(id);if(!e)return;e.textContent=fc(v);e.className=(cls||'vr')+' '+(v>=0?'pos':'neg');}
 
-// ── Pure canvas bar chart ─────────────────────────────────────────────────
-function drawBars(canvasId,labels,datasets,height){
-  var cv=g(canvasId);
-  if(!cv)return;
-  var W=cv.parentElement.offsetWidth||600;
-  cv.width=W; cv.height=height;
+function drawBars(cid,labels,datasets,h){
+  var cv=g(cid);if(!cv)return;
+  var W=cv.parentElement.offsetWidth||640;
+  cv.width=W;cv.height=h;
   var ctx=cv.getContext('2d');
-  ctx.clearRect(0,0,W,height);
-
-  var PAD_L=52,PAD_R=12,PAD_T=20,PAD_B=36;
-  var chartW=W-PAD_L-PAD_R, chartH=height-PAD_T-PAD_B;
-  var n=labels.length;
-  var nDs=datasets.length;
-
-  // find min/max across all datasets
-  var allVals=[];
-  datasets.forEach(function(ds){ds.data.forEach(function(v){allVals.push(v);});});
-  var minV=Math.min(0,Math.min.apply(null,allVals));
-  var maxV=Math.max(0,Math.max.apply(null,allVals));
-  if(minV===maxV){maxV=maxV+1000;}
-  var range=maxV-minV;
-
-  // nice tick step
-  var rawStep=range/5;
-  var mag=Math.pow(10,Math.floor(Math.log10(rawStep)));
-  var step=Math.ceil(rawStep/mag)*mag;
-  var tickMin=Math.floor(minV/step)*step;
-  var tickMax=Math.ceil(maxV/step)*step;
-  var totalRange=tickMax-tickMin;
-
-  function yPos(v){return PAD_T+chartH*(1-(v-tickMin)/totalRange);}
-
-  // grid & axes
-  ctx.strokeStyle='rgba(0,0,0,0.07)';
-  ctx.lineWidth=1;
-  ctx.fillStyle='#888780';
-  ctx.font='11px system-ui,sans-serif';
-  ctx.textAlign='right';
-  for(var tick=tickMin;tick<=tickMax+step*0.01;tick+=step){
-    var y=yPos(tick);
-    ctx.beginPath();ctx.moveTo(PAD_L,y);ctx.lineTo(PAD_L+chartW,y);ctx.stroke();
-    var label=tick===0?'0':(Math.abs(tick)>=1000?(tick<0?'-':'')+Math.abs(Math.round(tick/1000))+'k':''+Math.round(tick));
-    ctx.fillText(label,PAD_L-4,y+4);
+  ctx.clearRect(0,0,W,h);
+  var PL=56,PR=12,PT=20,PB=36;
+  var cW=W-PL-PR,cH=h-PT-PB,n=labels.length,nD=datasets.length;
+  var allV=[];datasets.forEach(function(d){d.data.forEach(function(v){allV.push(v);});});
+  var mn=Math.min(0,Math.min.apply(null,allV)),mx=Math.max(0,Math.max.apply(null,allV));
+  if(mn===mx){mx=mx+(Math.abs(mx)||1000);}
+  var rng=mx-mn;
+  var rawS=rng/5,mag=Math.pow(10,Math.floor(Math.log10(rawS)||0));
+  var step=Math.ceil(rawS/mag)*mag||1000;
+  var tMin=Math.floor(mn/step)*step,tMax=Math.ceil(mx/step)*step;
+  var tRng=tMax-tMin;
+  function yp(v){return PT+cH*(1-(v-tMin)/tRng);}
+  ctx.strokeStyle='rgba(0,0,0,0.07)';ctx.lineWidth=1;
+  ctx.fillStyle='#888780';ctx.font='11px system-ui,sans-serif';ctx.textAlign='right';
+  for(var tk=tMin;tk<=tMax+step*0.01;tk+=step){
+    var y=yp(tk);
+    ctx.beginPath();ctx.moveTo(PL,y);ctx.lineTo(PL+cW,y);ctx.stroke();
+    var lb=Math.abs(tk)>=1000?(tk<0?'-':'')+Math.abs(Math.round(tk/1000))+'k':''+Math.round(tk);
+    ctx.fillText(lb,PL-4,y+4);
   }
-
-  // zero line
-  var y0=yPos(0);
-  ctx.strokeStyle='rgba(0,0,0,0.2)';ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(PAD_L,y0);ctx.lineTo(PAD_L+chartW,y0);ctx.stroke();
-
-  // bars
-  var groupW=chartW/n;
-  var barW=Math.min(groupW/(nDs+1),40);
-  var groupPad=(groupW-barW*nDs)/2;
-  var RADIUS=3;
-
+  var y0=yp(0);ctx.strokeStyle='rgba(0,0,0,0.25)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(PL,y0);ctx.lineTo(PL+cW,y0);ctx.stroke();
+  var gW=cW/n,bW=Math.min(gW/(nD+1),38),R=3;
   datasets.forEach(function(ds,di){
     ctx.fillStyle=ds.color;
     ds.data.forEach(function(v,gi){
-      var x=PAD_L+gi*groupW+groupPad+di*barW;
-      var yTop=yPos(Math.max(0,v));
-      var yBot=yPos(Math.min(0,v));
-      var bH=Math.abs(yBot-yTop);
-      if(bH<1)bH=1;
-      var r=Math.min(RADIUS,bH/2);
+      var x=PL+gi*gW+(gW-bW*nD)/2+di*bW;
+      var yT=yp(Math.max(0,v)),yB=yp(Math.min(0,v));
+      var bH=Math.abs(yB-yT);if(bH<1)bH=1;
+      var r=Math.min(R,bH/2);
       ctx.beginPath();
-      if(v>=0){
-        ctx.moveTo(x+r,yTop);ctx.lineTo(x+barW-r,yTop);
-        ctx.quadraticCurveTo(x+barW,yTop,x+barW,yTop+r);
-        ctx.lineTo(x+barW,yBot);ctx.lineTo(x,yBot);ctx.lineTo(x,yTop+r);
-        ctx.quadraticCurveTo(x,yTop,x+r,yTop);
-      } else {
-        ctx.moveTo(x,yTop);ctx.lineTo(x+barW,yTop);
-        ctx.lineTo(x+barW,yBot-r);
-        ctx.quadraticCurveTo(x+barW,yBot,x+barW-r,yBot);
-        ctx.lineTo(x+r,yBot);ctx.quadraticCurveTo(x,yBot,x,yBot-r);
-        ctx.lineTo(x,yTop);
-      }
+      if(v>=0){ctx.moveTo(x+r,yT);ctx.lineTo(x+bW-r,yT);ctx.quadraticCurveTo(x+bW,yT,x+bW,yT+r);ctx.lineTo(x+bW,yB);ctx.lineTo(x,yB);ctx.lineTo(x,yT+r);ctx.quadraticCurveTo(x,yT,x+r,yT);}
+      else{ctx.moveTo(x,yT);ctx.lineTo(x+bW,yT);ctx.lineTo(x+bW,yB-r);ctx.quadraticCurveTo(x+bW,yB,x+bW-r,yB);ctx.lineTo(x+r,yB);ctx.quadraticCurveTo(x,yB,x,yB-r);ctx.lineTo(x,yT);}
       ctx.closePath();ctx.fill();
     });
   });
-
-  // x labels
   ctx.fillStyle='#5F5E5A';ctx.font='11px system-ui,sans-serif';ctx.textAlign='center';
-  labels.forEach(function(lb,i){
-    var x=PAD_L+i*groupW+groupW/2;
-    ctx.fillText(lb,x,height-6);
-  });
+  labels.forEach(function(lb,i){ctx.fillText(lb,PL+i*gW+gW/2,h-6);});
 }
 
 function setSt(who,type,btn){
   var rates={ae:22,tns:45,sasu:70};
-  var id=who==='f'?'csF':'csA';
-  g(id).value=rates[type];
+  g(who==='f'?'csF':'csA').value=rates[type];
   btn.closest('.stat-select').querySelectorAll('.stat-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  upd();
+  btn.classList.add('active');upd();
 }
 
 function upd(){
-  var hasP=g('hasP').checked;
+  var hasP=g('hasP').checked,hasMulti=g('hasMulti').checked;
   g('secFP').style.display=hasP?'block':'none';
   g('toggleLbl').textContent=hasP?'Oui — anime aussi ses prestas':'Non — développeur pur';
   g('fRowP').style.display=hasP?'':'none';
+  g('fRowMulti').style.display=hasMulti?'':'none';
+  g('secMulti').style.display=hasMulti?'block':'none';
+  g('secMultiPL').style.display=hasMulti?'block':'none';
+  g('multiLbl').textContent=hasMulti?'Activé dès an 3':'Désactivé';
+  g('legMulti').style.display=hasMulti?'':'none';
 
+  // Params
+  var matF=+g('matF').value,amoF=matF/5;
   var de=+g('de').value,rv=+g('rv').value;
   var n1=+g('n1').value,n2=+g('n2').value,n3=+g('n3').value;
   var cp=+g('cp').value,mt=+g('mt').value,gro=+g('gro').value/100;
   var csF=+g('csF').value/100,csA=+g('csA').value/100;
   var salF=+g('salF').value,salFAn=salF*12;
   var salFCS=Math.round(salFAn*csF),salFNet=salFAn-salFCS;
+  var deUp=+g('deUp').value,rvUp=+g('rvUp').value;
+  var nbM=+g('nbM').value,deM=+g('deM').value,rvM=+g('rvM').value;
+  var nbSub=+g('nbSub').value,pctDE=+g('pctDE').value/100,pctRV=+g('pctRV').value/100;
 
-  t('deV',de.toLocaleString('fr-FR')+' €'); t('rvV',rv+' €');
+  // Labels display
+  t('matFV',matF.toLocaleString('fr-FR')+' €');
+  t('kCapital',ff(matF));t('kAmoF',ff(amoF)+' / an');t('kVNC','0 € (an 5)');
+  t('deV',de.toLocaleString('fr-FR')+' €');t('rvV',rv+' €');
   t('n1V',n1);t('n2V',n2);t('n3V',n3+' / an');
-  t('cpV',cp.toLocaleString('fr-FR')+' €'); t('mtV',mt.toLocaleString('fr-FR')+' €');
+  t('cpV',cp.toLocaleString('fr-FR')+' €');t('mtV',mt.toLocaleString('fr-FR')+' €');
   t('groV','+'+(gro*100).toFixed(0)+' %');
-  t('csFV',Math.round(csF*100)+' %'); t('csAV',Math.round(csA*100)+' %');
-  t('csFpct',Math.round(csF*100)); t('csApct',Math.round(csA*100));
+  t('csFV',Math.round(csF*100)+' %');t('csAV',Math.round(csA*100)+' %');
+  t('csFpct',Math.round(csF*100));t('csApct',Math.round(csA*100));t('csMultiPct',Math.round(csA*100));
+  t('deUpV','+ '+deUp.toLocaleString('fr-FR')+' €');t('rvUpV','+ '+rvUp+' €');
   t('salFV',salF.toLocaleString('fr-FR')+' €/mois');
-  t('salBrutAn',ff(salFAn)); t('salCSAn','- '+ff(salFCS));
+  t('salBrutAn',ff(salFAn));t('salCSAn','- '+ff(salFCS));
   t('salNetMois',Math.round(salFNet/12).toLocaleString('fr-FR')+' €/mois');
+  t('nbMV',nbM+' / an');t('deMV',deM.toLocaleString('fr-FR')+' €');
+  t('rvMV',rvM+' €/mois');t('nbSubV',nbSub+' / an');
+  t('pctDEV',Math.round(pctDE*100)+' %');t('pctRVV',Math.round(pctRV*100)+' %');
 
   // Prestas franchiseur
   var fpBr=+g('fpB').value,fpCa=+g('fpC').value,fpCB=+g('fpCB').value,fpCE=+g('fpE').value;
   t('fpBV',fpBr);t('fpCV',fpCa);t('fpCBV',fpCB);t('fpEV',fpCE);
-  var cfB=fpBr*450,cfC=fpCa*900,cfCB=fpCB*1200,cfE=fpCE*2000;
-  var caFProp=cfB+cfC+cfCB+cfE;
-  t('cfB',cfB.toLocaleString('fr-FR')+' €');t('cfC',cfC.toLocaleString('fr-FR')+' €');
-  t('cfCB',cfCB.toLocaleString('fr-FR')+' €');t('cfE',cfE.toLocaleString('fr-FR')+' €');
+  var caFProp=(fpBr*450+fpCa*900+fpCB*1200+fpCE*2000);
+  t('cfB',(fpBr*450).toLocaleString('fr-FR')+' €');t('cfC',(fpCa*900).toLocaleString('fr-FR')+' €');
+  t('cfCB',(fpCB*1200).toLocaleString('fr-FR')+' €');t('cfE',(fpCE*2000).toLocaleString('fr-FR')+' €');
   t('ftotP',fpBr+fpCa+fpCB+fpCE);t('ftotCA',caFProp.toLocaleString('fr-FR')+' €');
 
   // Mix franchisé
-  var pBr=+g('pB').value,pCa=+g('pC').value,pCB=+g('pCB').value,pCE=+g('pE').value;
-  t('pBV',pBr);t('pCV',pCa);t('pCBV',pCB);t('pEV',pCE);
-  var caBr=pBr*450,caCa=pCa*900,caCB=pCB*1200,caCE=pCE*2000;
-  var caBase=caBr+caCa+caCB+caCE,totPr=pBr+pCa+pCB+pCE;
+  var pBr=+g('pB').value,pCa=+g('pC').value,pCB2=+g('pCB').value,pCE=+g('pE').value;
+  t('pBV',pBr);t('pCV',pCa);t('pCBV',pCB2);t('pEV',pCE);
+  var caBr=pBr*450,caCa=pCa*900,caCB=pCB2*1200,caCE=pCE*2000;
+  var caBase=caBr+caCa+caCB+caCE,totPr=pBr+pCa+pCB2+pCE;
   t('cB',caBr.toLocaleString('fr-FR')+' €');t('cC',caCa.toLocaleString('fr-FR')+' €');
   t('cCB',caCB.toLocaleString('fr-FR')+' €');t('cE',caCE.toLocaleString('fr-FR')+' €');
   t('totP',totPr);t('totCA',caBase.toLocaleString('fr-FR')+' €');
   t('pmois','≈ '+(totPr/12).toFixed(1)+' / mois');
   [[caBr,'B'],[caCa,'C'],[caCB,'CB'],[caCE,'E']].forEach(function(x){
     var p=caBase>0?Math.round(x[0]/caBase*100):0;
-    g('bb'+x[1]).style.width=p+'%'; t('pb'+x[1],p+'%');
+    g('bb'+x[1]).style.width=p+'%';t('pb'+x[1],p+'%');
   });
 
-  // Réseau
-  var newY=[n1,n2,n3,n3,n3],totY=[0,0,0,0,0],cum=0;
+  // Réseau direct
+  var newY=[n1,n2,n3,n3,n3];
+  var totY=[0,0,0,0,0],cum=0;
   newY.forEach(function(v,i){cum+=v;totY[i]=cum;});
+  // DE et redevances par an (an 3+ tarifs majorés pour nouveaux)
+  var dePerYear=[de,de,de+deUp,de+deUp,de+deUp];
+  var rvPerYear=[rv,rv,rv+rvUp,rv+rvUp,rv+rvUp];
+
+  // Multi-licenciés tracking
+  var multiActive=0,subActive=0;
+  var multiData={nbNew:[0,0,0,0,0],revTotal:[0,0,0,0,0]};
+  var deSub=de+deUp,rvSub=rv+rvUp; // sous-licenciés recrutés au tarif an3+
 
   // Franchiseur 5 ans
   var ju=[3500,500,500,500,500];
@@ -463,43 +530,69 @@ function upd(){
   var fPCoef=[0.7,1,1+gro,1+gro*2,1+gro*3];
   var fNetArr=[],fEntArr=[],fCumArr=[],fEntCumArr=[];
   var fCum=0,fEntCum=0,prevTot=0;
+
   for(var i=0;i<5;i++){
     var y=i+1,nb=newY[i];
-    var dEi=nb*de,rvi=prevTot*rv*12+nb*rv*6;
+    var dEi=nb*dePerYear[i];
+    var rvi=prevTot*rvPerYear[i]*12+nb*rvPerYear[i]*6;
     var prProp=hasP?caFProp*fPCoef[i]:0;
-    var cai=dEi+rvi+prProp,foi=nb*800;
-    var chExpl=ju[i]+foi+su[i]+co[i]+cp;
+
+    // Multi-licenciés (à partir de an 3)
+    var multiRev=0;
+    if(hasMulti&&i>=2){
+      var newMulti=nbM;
+      multiActive+=newMulti;
+      var newSubThisYear=multiActive*nbSub; // chaque multi actif recrute nbSub sous-licenciés/an
+      // simplification: sous-licenciés recrutés par les multi de cette année seulement (évite explosion)
+      newSubThisYear=newMulti*nbSub;
+      subActive+=newSubThisYear;
+      // Revenus franchiseur depuis multi
+      var deMultiRev=newMulti*deM;
+      var rvMultiRev=(multiActive-newMulti)*rvM*12+newMulti*rvM*6;
+      var deSubRev=newSubThisYear*deSub*pctDE;
+      var rvSubRev=subActive*rvSub*pctRV*12; // tous les sous-licenciés actifs
+      multiRev=deMultiRev+rvMultiRev+deSubRev+rvSubRev;
+      multiData.nbNew[i]=newMulti;
+      multiData.revTotal[i]=multiRev;
+    }
+
+    var cai=dEi+rvi+prProp+multiRev;
+    var foi=(nb+(hasMulti&&i>=2?nbM:0))*800;
+    var chExpl=ju[i]+foi+su[i]+co[i]+cp+amoF;
     var bri=cai-chExpl;
     var salV=Math.min(salFAn,Math.max(0,bri));
     var csi=Math.round(salV*csF);
     var entR=bri-salV-csi,netP=salV-csi;
     fCum+=netP;fEntCum+=entR;
     fNetArr.push(netP);fEntArr.push(entR);fCumArr.push(fCum);fEntCumArr.push(fEntCum);
+
     t('fNb'+y,nb);t('fTt'+y,totY[i]);
     if(hasP)t('fPr'+y,ff(prProp));
-    t('fDe'+y,ff(dEi));t('fRv'+y,ff(rvi));t('fCA'+y,ff(cai));
+    t('fDe'+y,ff(dEi));t('fRv'+y,ff(rvi));
+    if(hasMulti)t('fMu'+y,multiRev>0?ff(multiRev):'—');
+    t('fCA'+y,ff(cai));
     t('fJu'+y,'- '+ff(ju[i]));t('fFo'+y,'- '+ff(foi));
     t('fSu'+y,'- '+ff(su[i]));t('fCo'+y,'- '+ff(co[i]));t('fCp'+y,'- '+ff(cp));
+    t('fAmo'+y,'- '+ff(amoF));
     pn('fBr'+y,bri);
     t('fSal'+y,salV>0?'- '+ff(salV):'0 €');
     t('fCS'+y,csi>0?'- '+ff(csi):'0 €');
-    pn('fEnt'+y,entR);pn('fN'+y,netP);
-    pn('fNC'+y,fCum);pn('fEC'+y,fEntCum);
+    pn('fEnt'+y,entR);pn('fN'+y,netP);pn('fNC'+y,fCum);pn('fEC'+y,fEntCum);
     prevTot=totY[i];
   }
 
-  // Franchisé 5 ans
+  // Franchisé direct 5 ans
   var coefCA=[0.70,1,1+gro,1+gro*2,1+gro*3];
-  var amo=mt/5,rd=rv*12,chFix=amo+700+3500+rd+1500;
+  var amo=mt/5,chFix=amo+700+3500+rv*12+1500;
   var invest=mt+de,aNetArr=[],aCumArr=[],aCum=-invest;
   for(var i=0;i<5;i++){
     var y=i+1;
-    var cai=caBase*coefCA[i],bri=cai-chFix;
-    var csi=bri>0?Math.round(bri*csA):0,ni=bri-csi;
+    var cai2=caBase*coefCA[i],bri2=cai2-chFix;
+    var csi2=bri2>0?Math.round(bri2*csA):0,ni=bri2-csi2;
     aCum+=ni;aNetArr.push(ni);aCumArr.push(aCum);
     if(i>=2)t('aC'+y,Math.round(coefCA[i]*100)+'%');
-    t('aCA'+y,ff(cai));t('aAm'+y,'- '+ff(amo));t('aRd'+y,'- '+ff(rd));
-    pn('aBr'+y,bri);t('aCS'+y,csi>0?'- '+ff(csi):'0 €');
+    t('aCA'+y,ff(cai2));t('aAm'+y,'- '+ff(amo));t('aRd'+y,'- '+ff(rv*12));
+    pn('aBr'+y,bri2);t('aCS'+y,csi2>0?'- '+ff(csi2):'0 €');
     pn('aN'+y,ni);pn('aNC'+y,aCum);
   }
   var beT='> An 5';
@@ -508,37 +601,87 @@ function upd(){
   t('invest',ff(invest));t('be',beT);
   var re=g('roi');if(re){re.textContent=roi5+' %';re.className=roi5>=0?'pos':'neg';}
 
+  // Multi-licencié P&L (an 2 d'activité = régime croisière)
+  var multiNetArr=[null,null,null,null,null];
+  if(hasMulti){
+    // Multi-licencié en an 2 de son activité:
+    var mCAprop=caBase; // 100% du mix
+    // Sous-licenciés actifs sous lui en an 2: nbSub*2 (an1: nbSub, an2: nbSub*2 cumulés)
+    var mSubAn2=nbSub*2;
+    var mCommDE=nbSub*deSub*(1-pctDE); // commission DE sur nouveaux sous-licenciés an 2
+    var mCommRV=mSubAn2*rvSub*(1-pctRV)*12; // commission redevances sur tous ses sous-licenciés
+    var mProd=mCAprop+mCommDE+mCommRV;
+    var mAmo=mt/5,mRvPay=rvM*12;
+    var mChFix=mAmo+700+3500+mRvPay+2000+1500;
+    var mBr=mProd-mChFix;
+    var mCS=mBr>0?Math.round(mBr*csA):0;
+    var mNet=mBr-mCS;
+    var classiqueAn2=aNetArr[1];
+    var mDelta=mNet-classiqueAn2;
+    t('mCA',ff(mCAprop));t('mCAd','mix complet × 100%');
+    t('mCDE',ff(mCommDE));t('mCDEd',nbSub+' nvx sous-lic. × '+ff(deSub)+' × '+(Math.round((1-pctDE)*100))+'%');
+    t('mCRV',ff(mCommRV));t('mCRVd',mSubAn2+' sous-lic. actifs × '+ff(rvSub)+'/mois × '+(Math.round((1-pctRV)*100))+'%');
+    t('mProd',ff(mProd));
+    t('mAmo','- '+ff(mAmo));t('mRv','- '+ff(mRvPay));t('mRvd',rvM+' €/mois (tarif multi)');
+    pn('mBr',mBr);
+    t('mCS',mCS>0?'- '+ff(mCS):'0 €');
+    pn('mNet',mNet,'net-row vr');
+    t('mNetd','');
+    var me=g('mDelta');if(me){me.textContent=fc(mDelta);me.className=mDelta>=0?'pos':'neg';}
+    // Pour graphique: an 3 = an 1 d'activité multi, an 4 = an 2, an 5 = an 3
+    for(var k=0;k<5;k++){
+      if(k<2){multiNetArr[k]=null;}
+      else{
+        var kCoef=k-2; // 0,1,2 pour an3,an4,an5
+        var mSubK=nbSub*(kCoef+1);
+        var mCommDEk=nbSub*deSub*(1-pctDE);
+        var mCommRVk=mSubK*rvSub*(1-pctRV)*12;
+        var mProdk=caBase*(1+gro*kCoef)+mCommDEk+mCommRVk;
+        var mBrk=mProdk-mChFix;
+        var mCSk=mBrk>0?Math.round(mBrk*csA):0;
+        multiNetArr[k]=mBrk-mCSk;
+      }
+    }
+    // Sub-réseau KPIs
+    t('kSubAn5',subActive+' actifs');
+    pn('kMultiNet5',multiNetArr[4]||0,'mc-v');
+    var multiToF5=hasMulti?multiData.revTotal[4]:0;
+    pn('kMultiToF5',multiToF5,'mc-v');
+    t('kReseauTotal5',(totY[4]+(hasMulti?multiActive+subActive:0))+' total');
+  }
+
   // KPI
-  t('kR5',totY[4]+' actifs');
+  t('kR5',totY[4]+' directs');
   pn('kF5',fNetArr[4],'mc-v');pn('kFEnt',fEntCumArr[4],'mc-v');
   pn('kA5',aNetArr[4],'mc-v');
-  var ke=g('kROI');if(ke){ke.textContent=roi5+' %';ke.className='mc-v '+(roi5>=0?'pos':'neg');}
+  var kr=g('kROI');if(kr){kr.textContent=roi5+' %';kr.className='mc-v '+(roi5>=0?'pos':'neg');}
 
   // Alert
   var ab=g('alertBox');
   if(ab){
-    var seuil=rv>0?Math.ceil((500+6000+4000+cp)/(rv*12)):999;
-    if(totY[4]<seuil&&!hasP){
+    var seuil=rv>0?Math.ceil((500+6000+4000+cp+amoF)/(rv*12)):999;
+    if(totY[4]<seuil&&!hasP&&!hasMulti){
       ab.className='warn-box';ab.style.display='block';
-      ab.innerHTML='<strong>Attention :</strong> '+totY[4]+' franchisés en an 5 < seuil d\'autonomie ('+seuil+' nécessaires sur redevances seules).';
+      ab.innerHTML='<strong>Attention :</strong> '+totY[4]+' licenciés directs < seuil autonomie ('+seuil+' requis sur redevances seules).';
     } else {
       ab.className='info-box';ab.style.display='block';
-      ab.innerHTML=hasP?'<strong>Mode hybride :</strong> prestas propres + réseau réduisent la dépendance au nombre de licenciés.':'<strong>Réseau autonome en an 5 :</strong> les redevances couvrent les charges fixes.';
+      var msg=hasMulti?'<strong>Réseau hybride :</strong> licenciés directs + multi-licenciés. Revenu total franchiseur en an 5 = net perso + cumul entreprise.':
+              (hasP?'<strong>Mode hybride :</strong> prestas propres + réseau.':'<strong>Réseau développé :</strong> vérifier le seuil d\'autonomie en an 2-3.');
+      ab.innerHTML=msg;
     }
   }
 
-  // Draw charts (pur canvas, sans dépendance externe)
+  // Charts
   var labels=['An 1','An 2','An 3','An 4','An 5'];
-  drawBars('ch1',labels,[
+  var ds1=[
     {data:fNetArr,color:'#185FA5'},
     {data:fEntArr,color:'#AFA9EC'},
     {data:aNetArr,color:'#3B6D11'}
-  ],260);
-  drawBars('ch2',labels,[
-    {data:fEntCumArr,color:'#534AB7'}
-  ],200);
+  ];
+  if(hasMulti){ds1.push({data:multiNetArr.map(function(v){return v===null?0:v;}),color:'#0F6E56'});}
+  drawBars('ch1',labels,ds1,270);
+  drawBars('ch2',labels,[{data:fEntCumArr,color:'#534AB7'}],200);
 }
-
 window.addEventListener('resize',upd);
 upd();
 </script>
