@@ -120,12 +120,12 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
 <!-- TOGGLE PRESTAS FRANCHISEUR -->
 <div class="toggle-card">
   <div class="lb">Le franchiseur anime-t-il ses propres prestas ?</div>
-  <label class="sw"><input type="checkbox" id="hasP" onchange="upd()"><span class="tr"></span></label>
-  <div class="toggle-status" id="toggleLbl">Non — développeur pur</div>
+  <label class="sw"><input type="checkbox" id="hasP" checked onchange="upd()"><span class="tr"></span></label>
+  <div class="toggle-status" id="toggleLbl">Oui — anime aussi ses prestas</div>
 </div>
 
 <!-- PRESTAS FRANCHISEUR -->
-<section id="secFP" style="display:none">
+<section id="secFP" style="display:block">
   <div class="st">Mix prestas franchiseur — ses propres animations</div>
   <div class="card">
     <div class="mix-row"><span class="mix-lbl">Bar / brasserie (450 €)</span><input type="range" id="fpB" min="0" max="52" step="1" value="8" oninput="upd()"><span class="mix-val" id="fpBV">8</span><span class="mix-ca" id="cfB">3 600 €</span></div>
@@ -330,29 +330,40 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
 
 <!-- P&L MULTI-LICENCIÉ (conditionnel) -->
 <section id="secMultiPL" style="display:none">
-  <div class="st">P&L Multi-licencié type — an 2 d'activité (régime de croisière)</div>
+  <div class="st">P&L Multi-licencié type — 5 ans d'activité</div>
+  <div class="info-box" style="margin-bottom:1rem">
+    <strong>Hypothèses :</strong> le multi-licencié démarre an 1 avec son propre mix de prestas (70% en an 1, 100% en an 2+). Il recrute <span id="mDescSub">3</span> sous-licenciés / an dès an 1. Il perçoit sa part des droits d'entrée et redevances de son sous-réseau. Redevance franchiseur au tarif multi.
+  </div>
   <div class="card" style="overflow-x:auto">
     <table class="yt">
-      <thead><tr><th style="text-align:left;min-width:185px">Ligne</th><th>Montant</th><th>Détail</th></tr></thead>
+      <thead><tr><th style="text-align:left;min-width:200px">Ligne</th><th>An 1</th><th>An 2</th><th>An 3</th><th>An 4</th><th>An 5</th></tr></thead>
       <tbody>
-        <tr class="sh"><td colspan="3">Produits</td></tr>
-        <tr><td>CA prestas propres (mix complet)</td><td id="mCA">—</td><td id="mCAd" style="color:var(--tx3);font-size:12px">—</td></tr>
-        <tr class="multi-row"><td>Commission DE sous-licenciés (sa part)</td><td id="mCDE">—</td><td id="mCDEd" style="color:var(--te);font-size:12px">—</td></tr>
-        <tr class="multi-row"><td>Commission redevances sous-licenciés (sa part)</td><td id="mCRV">—</td><td id="mCRVd" style="color:var(--te);font-size:12px">—</td></tr>
-        <tr class="tot"><td>Produits totaux</td><td id="mProd">—</td><td></td></tr>
-        <tr class="sh"><td colspan="3">Charges</td></tr>
-        <tr><td>Amortissement matériel (5 ans)</td><td id="mAmo">—</td><td></td></tr>
-        <tr><td>Licence buzzers</td><td>- 700 €</td><td></td></tr>
-        <tr><td>Véhicule</td><td>- 3 500 €</td><td></td></tr>
-        <tr><td>Redevance franchiseur (tarif multi)</td><td id="mRv">—</td><td id="mRvd" style="color:var(--tx3);font-size:12px">—</td></tr>
-        <tr><td>Support sous-réseau / frais divers</td><td>- 2 000 €</td><td style="color:var(--tx3);font-size:12px">Temps dédié recrutement & animation</td></tr>
-        <tr><td>Assurances</td><td>- 1 500 €</td><td></td></tr>
-        <tr class="tot"><td>Résultat avant CS</td><td id="mBr">—</td><td></td></tr>
-        <tr class="cs-row"><td>Charges sociales (<span id="csMultiPct">22</span>%)</td><td id="mCS">—</td><td></td></tr>
-        <tr class="net-row"><td>Revenu net disponible</td><td id="mNet">—</td><td id="mNetd" style="font-size:12px"></td></tr>
-        <tr class="cum"><td>vs. licencié classique an 2</td><td id="mDelta">—</td><td id="mDeltad" style="color:var(--te);font-size:12px">différence de revenus</td></tr>
+        <tr class="sh"><td colspan="6">Sous-réseau</td></tr>
+        <tr><td>Nouveaux sous-licenciés recrutés</td><td id="msNb1">—</td><td id="msNb2">—</td><td id="msNb3">—</td><td id="msNb4">—</td><td id="msNb5">—</td></tr>
+        <tr><td>Total sous-licenciés actifs</td><td id="msTt1">—</td><td id="msTt2">—</td><td id="msTt3">—</td><td id="msTt4">—</td><td id="msTt5">—</td></tr>
+        <tr class="sh"><td colspan="6">Compte de résultat</td></tr>
+        <tr><td>CA prestas propres</td><td id="msCA1">—</td><td id="msCA2">—</td><td id="msCA3">—</td><td id="msCA4">—</td><td id="msCA5">—</td></tr>
+        <tr class="multi-row"><td>Commission DE sous-licenciés (sa part)</td><td id="msCDE1">—</td><td id="msCDE2">—</td><td id="msCDE3">—</td><td id="msCDE4">—</td><td id="msCDE5">—</td></tr>
+        <tr class="multi-row"><td>Commission redevances sous-licenciés (sa part)</td><td id="msCRV1">—</td><td id="msCRV2">—</td><td id="msCRV3">—</td><td id="msCRV4">—</td><td id="msCRV5">—</td></tr>
+        <tr class="tot"><td>Produits totaux</td><td id="msProd1">—</td><td id="msProd2">—</td><td id="msProd3">—</td><td id="msProd4">—</td><td id="msProd5">—</td></tr>
+        <tr><td>Amortissement matériel (5 ans)</td><td id="msAmo1">—</td><td id="msAmo2">—</td><td id="msAmo3">—</td><td id="msAmo4">—</td><td id="msAmo5">—</td></tr>
+        <tr><td>Licence buzzers</td><td>- 700 €</td><td>- 700 €</td><td>- 700 €</td><td>- 700 €</td><td>- 700 €</td></tr>
+        <tr><td>Véhicule</td><td>- 3 500 €</td><td>- 3 500 €</td><td>- 3 500 €</td><td>- 3 500 €</td><td>- 3 500 €</td></tr>
+        <tr><td>Redevance franchiseur (tarif multi)</td><td id="msRv1">—</td><td id="msRv2">—</td><td id="msRv3">—</td><td id="msRv4">—</td><td id="msRv5">—</td></tr>
+        <tr><td>Support sous-réseau / frais</td><td>- 2 000 €</td><td>- 2 000 €</td><td>- 2 500 €</td><td>- 2 500 €</td><td>- 3 000 €</td></tr>
+        <tr><td>Assurances / divers</td><td>- 1 500 €</td><td>- 1 500 €</td><td>- 1 500 €</td><td>- 1 500 €</td><td>- 1 500 €</td></tr>
+        <tr class="tot"><td>Résultat avant CS</td><td id="msBr1">—</td><td id="msBr2">—</td><td id="msBr3">—</td><td id="msBr4">—</td><td id="msBr5">—</td></tr>
+        <tr class="cs-row"><td>Charges sociales (<span id="csMultiPct">22</span>%)</td><td id="msCS1">—</td><td id="msCS2">—</td><td id="msCS3">—</td><td id="msCS4">—</td><td id="msCS5">—</td></tr>
+        <tr class="net-row"><td>Revenu net disponible</td><td id="msNet1">—</td><td id="msNet2">—</td><td id="msNet3">—</td><td id="msNet4">—</td><td id="msNet5">—</td></tr>
+        <tr class="cum"><td>Cumulé net (après invest. récupéré)</td><td id="msNC1">—</td><td id="msNC2">—</td><td id="msNC3">—</td><td id="msNC4">—</td><td id="msNC5">—</td></tr>
+        <tr class="cum"><td>vs. licencié classique (même année)</td><td id="msDelta1">—</td><td id="msDelta2">—</td><td id="msDelta3">—</td><td id="msDelta4">—</td><td id="msDelta5">—</td></tr>
       </tbody>
     </table>
+    <div style="margin-top:.85rem;display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--tx2)">
+      <span>Capital investi multi : <strong id="msInvest">—</strong></span>
+      <span>Break-even : <strong id="msBE">—</strong></span>
+      <span>ROI 5 ans : <strong id="msROI">—</strong></span>
+    </div>
   </div>
 </section>
 
@@ -640,53 +651,66 @@ function upd(){
   t('invest',ff(invest));t('be',beT);
   var re=g('roi');if(re){re.textContent=roi5+' %';re.className=roi5>=0?'pos':'neg';}
 
-  // Multi-licencié P&L (an 2 d'activité = régime croisière)
+  // Multi-licencié P&L — 5 ans complets
   var multiNetArr=[null,null,null,null,null];
   if(hasMulti){
-    // Multi-licencié en an 2 de son activité:
-    var mCAprop=caBase; // 100% du mix
-    // Sous-licenciés actifs sous lui en an 2: nbSub*2 (an1: nbSub, an2: nbSub*2 cumulés)
-    var mSubAn2=nbSub*2;
-    var mCommDE=nbSub*deSub*(1-pctDE); // commission DE sur nouveaux sous-licenciés an 2
-    var mCommRV=mSubAn2*rvSub*(1-pctRV)*12; // commission redevances sur tous ses sous-licenciés
-    var mProd=mCAprop+mCommDE+mCommRV;
-    var mAmo=mt/5,mRvPay=rvM*12;
-    var mChFix=mAmo+700+3500+mRvPay+2000+1500;
-    var mBr=mProd-mChFix;
-    var mCS=mBr>0?Math.round(mBr*csA):0;
-    var mNet=mBr-mCS;
-    var classiqueAn2=aNetArr[1];
-    var mDelta=mNet-classiqueAn2;
-    t('mCA',ff(mCAprop));t('mCAd','mix complet × 100%');
-    t('mCDE',ff(mCommDE));t('mCDEd',nbSub+' nvx sous-lic. × '+ff(deSub)+' × '+(Math.round((1-pctDE)*100))+'%');
-    t('mCRV',ff(mCommRV));t('mCRVd',mSubAn2+' sous-lic. actifs × '+ff(rvSub)+'/mois × '+(Math.round((1-pctRV)*100))+'%');
-    t('mProd',ff(mProd));
-    t('mAmo','- '+ff(mAmo));t('mRv','- '+ff(mRvPay));t('mRvd',rvM+' €/mois (tarif multi)');
-    pn('mBr',mBr);
-    t('mCS',mCS>0?'- '+ff(mCS):'0 €');
-    pn('mNet',mNet,'net-row vr');
-    t('mNetd','');
-    var me=g('mDelta');if(me){me.textContent=fc(mDelta);me.className=mDelta>=0?'pos':'neg';}
-    // Pour graphique: an 3 = an 1 d'activité multi, an 4 = an 2, an 5 = an 3
-    for(var k=0;k<5;k++){
-      if(k<2){multiNetArr[k]=null;}
-      else{
-        var kCoef=k-2; // 0,1,2 pour an3,an4,an5
-        var mSubK=nbSub*(kCoef+1);
-        var mCommDEk=nbSub*deSub*(1-pctDE);
-        var mCommRVk=mSubK*rvSub*(1-pctRV)*12;
-        var mProdk=caBase*(1+gro*kCoef)+mCommDEk+mCommRVk;
-        var mBrk=mProdk-mChFix;
-        var mCSk=mBrk>0?Math.round(mBrk*csA):0;
-        multiNetArr[k]=mBrk-mCSk;
-      }
+    t('mDescSub',nbSub);
+    t('csMultiPct',Math.round(csA*100));
+    var mAmo=mt/5, mRvPay=rvM*12;
+    var msInvest=mt+deM;
+    var mChFixBase=mAmo+700+3500+mRvPay+1500; // hors support variable
+    var supportY=[2000,2000,2500,2500,3000];
+    var mCoefCA=[0.7,1,1+gro,1+gro*2,1+gro*3];
+    var msNetArr=[],msCumArr=[],msCum=-msInvest;
+    var mSubCum=0;
+    for(var i=0;i<5;i++){
+      var y=i+1;
+      // Sous-licenciés: recrute nbSub par an dès an 1
+      mSubCum+=nbSub;
+      var newSubM=nbSub;
+      // CA prestas propres
+      var msCAprop=caBase*mCoefCA[i];
+      // Commissions: nouveaux DE + tous les actifs en redevances
+      var msCommDE=newSubM*deSub*(1-pctDE);
+      var msCommRV=mSubCum*rvSub*(1-pctRV)*12;
+      var msProd=msCAprop+msCommDE+msCommRV;
+      var msChFix=mChFixBase+supportY[i];
+      var msBr=msProd-msChFix;
+      var msCS=msBr>0?Math.round(msBr*csA):0;
+      var msNi=msBr-msCS;
+      msCum+=msNi; msNetArr.push(msNi); msCumArr.push(msCum);
+      multiNetArr[i]=msNi;
+      // Affichage tableau
+      t('msNb'+y,newSubM); t('msTt'+y,mSubCum);
+      t('msCA'+y,ff(msCAprop));
+      t('msCDE'+y,ff(msCommDE));
+      t('msCRV'+y,ff(msCommRV));
+      t('msProd'+y,ff(msProd));
+      t('msAmo'+y,'- '+ff(mAmo));
+      t('msRv'+y,'- '+ff(mRvPay));
+      pn('msBr'+y,msBr);
+      t('msCS'+y,msCS>0?'- '+ff(msCS):'0 €');
+      pn('msNet'+y,msNi);
+      pn('msNC'+y,msCum);
+      // vs classique
+      var delta=msNi-aNetArr[i];
+      var dEl=g('msDelta'+y);
+      if(dEl){dEl.textContent=fc(delta);dEl.className=delta>=0?'pos':'neg';}
     }
+    // Break-even & ROI multi
+    var msBEt='> An 5';
+    for(var i=0;i<5;i++){if(msCumArr[i]>=0){msBEt='An '+(i+1);break;}}
+    var msRoi5=msInvest>0?Math.round(msCumArr[4]/msInvest*100):0;
+    t('msInvest',ff(msInvest));t('msBE',msBEt);
+    var msRe=g('msROI');if(msRe){msRe.textContent=msRoi5+' %';msRe.className=msRoi5>=0?'pos':'neg';}
     // Sub-réseau KPIs
     t('kSubAn5',subActive+' actifs');
     pn('kMultiNet5',multiNetArr[4]||0,'mc-v');
     var multiToF5=hasMulti?multiData.revTotal[4]:0;
     pn('kMultiToF5',multiToF5,'mc-v');
     t('kReseauTotal5',(totY[4]+(hasMulti?multiActive+subActive:0))+' total');
+  } else {
+    t('kSubAn5','—');t('kMultiNet5','—');t('kMultiToF5','—');t('kReseauTotal5',totY[4]+' directs');
   }
 
   // KPI
