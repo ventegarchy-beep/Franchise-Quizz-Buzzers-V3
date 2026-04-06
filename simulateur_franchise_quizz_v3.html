@@ -84,6 +84,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .yt .net-row td{font-size:14px;font-weight:700;border-top:2.5px solid var(--tx);border-bottom:2.5px solid var(--tx);padding-top:8px;padding-bottom:8px}
 .yt .total-row td{font-size:14px;font-weight:700;background:var(--bg);border-top:none;border-bottom:2.5px solid var(--bdrm);padding-top:6px;padding-bottom:6px}
 .yt .total-row td:first-child{color:var(--tx)}
+#fRowTotAnim td{background:#F7F6F2;border-top:1.5px solid var(--bdrm);color:var(--tx);font-size:13px}
 .yt .cum td{font-size:11.5px;color:var(--tx3);border-bottom:none}
 .pos{color:var(--gr)!important} .neg{color:var(--rd)!important}
 .info-box{background:var(--bl-bg);border:1px solid var(--bl-lt);border-radius:var(--rs);padding:.8rem 1rem;font-size:13px;color:#0C447C;line-height:1.6;margin-bottom:1rem}
@@ -202,8 +203,8 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
 <section>
   <div class="st">Structure & rémunération franchiseur</div>
   <div class="card">
-    <div class="pr"><span class="pl">Charges structure / an (hors salaire)</span><input type="range" id="cp" min="0" max="40000" step="1000" value="12000" oninput="upd()"><span class="pv" id="cpV">12 000 €</span></div>
-    <div class="pr"><span class="pl">Salaire mensuel cible (brut)</span><input type="range" id="salF" min="0" max="6000" step="100" value="2000" oninput="upd()"><span class="pv" id="salFV">2 000 €/mois</span></div>
+    <div class="pr"><span class="pl">Charges structure / an (hors salaire)</span><input type="range" id="cp" min="0" max="40000" step="1000" value="10000" oninput="upd()"><span class="pv" id="cpV">10 000 €</span></div>
+    <div class="pr"><span class="pl">Salaire mensuel cible (brut)</span><input type="range" id="salF" min="0" max="6000" step="100" value="3700" oninput="upd()"><span class="pv" id="salFV">3 700 €/mois</span></div>
     <div class="g3" style="margin-top:1rem">
       <div class="mc"><div class="mc-l">Salaire brut / an</div><div class="mc-v" id="salBrutAn">24 000 €</div></div>
       <div class="mc"><div class="mc-l">CS sur salaire</div><div class="mc-v" id="salCSAn">—</div></div>
@@ -245,10 +246,10 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
 <section>
   <div class="st">Mix de prestations — franchisé type (croisière)</div>
   <div class="card">
-    <div class="mix-row"><span class="mix-lbl">Bar / brasserie (450 €)</span><input type="range" id="pB" min="0" max="52" step="1" value="10" oninput="upd()"><span class="mix-val" id="pBV">10</span><span class="mix-ca" id="cB">4 500 €</span></div>
-    <div class="mix-row"><span class="mix-lbl">Camping sans scène (900 €)</span><input type="range" id="pC" min="0" max="52" step="1" value="6" oninput="upd()"><span class="mix-val" id="pCV">6</span><span class="mix-ca" id="cC">5 400 €</span></div>
-    <div class="mix-row"><span class="mix-lbl">Camping avec buzzers (1 200 €)</span><input type="range" id="pCB" min="0" max="52" step="1" value="8" oninput="upd()"><span class="mix-val" id="pCBV">8</span><span class="mix-ca" id="cCB">9 600 €</span></div>
-    <div class="mix-row"><span class="mix-lbl">CE scénique + buzzers (2 000 €)</span><input type="range" id="pE" min="0" max="52" step="1" value="5" oninput="upd()"><span class="mix-val" id="pEV">5</span><span class="mix-ca" id="cE">10 000 €</span></div>
+    <div class="mix-row"><span class="mix-lbl">Bar / brasserie (450 €)</span><input type="range" id="pB" min="0" max="52" step="1" value="11" oninput="upd()"><span class="mix-val" id="pBV">11</span><span class="mix-ca" id="cB">4 950 €</span></div>
+    <div class="mix-row"><span class="mix-lbl">Camping sans scène (900 €)</span><input type="range" id="pC" min="0" max="52" step="1" value="10" oninput="upd()"><span class="mix-val" id="pCV">10</span><span class="mix-ca" id="cC">9 000 €</span></div>
+    <div class="mix-row"><span class="mix-lbl">Camping avec buzzers (1 200 €)</span><input type="range" id="pCB" min="0" max="52" step="1" value="10" oninput="upd()"><span class="mix-val" id="pCBV">10</span><span class="mix-ca" id="cCB">12 000 €</span></div>
+    <div class="mix-row"><span class="mix-lbl">CE scénique + buzzers (2 000 €)</span><input type="range" id="pE" min="0" max="52" step="1" value="12" oninput="upd()"><span class="mix-val" id="pEV">12</span><span class="mix-ca" id="cE">24 000 €</span></div>
     <div class="divider"></div>
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px">
       <span style="color:var(--tx2)">Total / an : <strong id="totP">29</strong></span>
@@ -284,9 +285,14 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bdr);font-siz
     <table class="yt">
       <thead><tr><th style="text-align:left;min-width:185px">Ligne</th><th>An 1</th><th>An 2</th><th>An 3</th><th>An 4</th><th>An 5</th></tr></thead>
       <tbody>
-        <tr class="sh"><td colspan="6">Réseau direct (licenciés classiques)</td></tr>
-        <tr><td>Nouveaux recrutés</td><td id="fNb1">—</td><td id="fNb2">—</td><td id="fNb3">—</td><td id="fNb4">—</td><td id="fNb5">—</td></tr>
-        <tr><td>Total réseau direct</td><td id="fTt1">—</td><td id="fTt2">—</td><td id="fTt3">—</td><td id="fTt4">—</td><td id="fTt5">—</td></tr>
+        <tr class="sh"><td colspan="6">Réseau — animateurs actifs</td></tr>
+        <tr><td>Nouveaux licenciés directs</td><td id="fNb1">—</td><td id="fNb2">—</td><td id="fNb3">—</td><td id="fNb4">—</td><td id="fNb5">—</td></tr>
+        <tr><td>Total licenciés directs</td><td id="fTt1">—</td><td id="fTt2">—</td><td id="fTt3">—</td><td id="fTt4">—</td><td id="fTt5">—</td></tr>
+        <tr id="fRowMultiNb" style="display:none"><td>Nouveaux multi-licenciés</td><td id="fMNb1">—</td><td id="fMNb2">—</td><td id="fMNb3">—</td><td id="fMNb4">—</td><td id="fMNb5">—</td></tr>
+        <tr id="fRowMultiTot" style="display:none"><td>Total multi-licenciés actifs</td><td id="fMTt1">—</td><td id="fMTt2">—</td><td id="fMTt3">—</td><td id="fMTt4">—</td><td id="fMTt5">—</td></tr>
+        <tr id="fRowSubNb" style="display:none"><td>Nouveaux sous-licenciés (via multi)</td><td id="fSNb1">—</td><td id="fSNb2">—</td><td id="fSNb3">—</td><td id="fSNb4">—</td><td id="fSNb5">—</td></tr>
+        <tr id="fRowSubTot" style="display:none"><td>Total sous-licenciés actifs</td><td id="fSTt1">—</td><td id="fSTt2">—</td><td id="fSTt3">—</td><td id="fSTt4">—</td><td id="fSTt5">—</td></tr>
+        <tr id="fRowTotAnim" style="font-weight:600"><td>Total animateurs réseau</td><td id="fTA1">—</td><td id="fTA2">—</td><td id="fTA3">—</td><td id="fTA4">—</td><td id="fTA5">—</td></tr>
         <tr class="sh"><td colspan="6">Produits</td></tr>
         <tr id="fRowP" style="display:none"><td>CA prestas propres</td><td id="fPr1">—</td><td id="fPr2">—</td><td id="fPr3">—</td><td id="fPr4">—</td><td id="fPr5">—</td></tr>
         <tr><td>Droits d'entrée directs</td><td id="fDe1">—</td><td id="fDe2">—</td><td id="fDe3">—</td><td id="fDe4">—</td><td id="fDe5">—</td></tr>
@@ -458,6 +464,10 @@ function upd(){
   g('toggleLbl').textContent=hasP?'Oui — anime aussi ses prestas':'Non — développeur pur';
   g('fRowP').style.display=hasP?'':'none';
   g('fRowMulti').style.display=hasMulti?'':'none';
+  g('fRowMultiNb').style.display=hasMulti?'':'none';
+  g('fRowMultiTot').style.display=hasMulti?'':'none';
+  g('fRowSubNb').style.display=hasMulti?'':'none';
+  g('fRowSubTot').style.display=hasMulti?'':'none';
   g('secMulti').style.display=hasMulti?'block':'none';
   g('secMultiPL').style.display=hasMulti?'block':'none';
   g('multiLbl').textContent=hasMulti?'Activé dès an 3':'Désactivé';
@@ -543,22 +553,21 @@ function upd(){
 
     // Multi-licenciés (à partir de an 3)
     var multiRev=0;
+    var newMultiThisYear=0,newSubThisYear=0;
     if(hasMulti&&i>=2){
-      var newMulti=nbM;
-      multiActive+=newMulti;
-      var newSubThisYear=multiActive*nbSub; // chaque multi actif recrute nbSub sous-licenciés/an
-      // simplification: sous-licenciés recrutés par les multi de cette année seulement (évite explosion)
-      newSubThisYear=newMulti*nbSub;
+      newMultiThisYear=nbM;
+      multiActive+=newMultiThisYear;
+      newSubThisYear=newMultiThisYear*nbSub;
       subActive+=newSubThisYear;
-      // Revenus franchiseur depuis multi
-      var deMultiRev=newMulti*deM;
-      var rvMultiRev=(multiActive-newMulti)*rvM*12+newMulti*rvM*6;
+      var deMultiRev=newMultiThisYear*deM;
+      var rvMultiRev=(multiActive-newMultiThisYear)*rvM*12+newMultiThisYear*rvM*6;
       var deSubRev=newSubThisYear*deSub*pctDE;
-      var rvSubRev=subActive*rvSub*pctRV*12; // tous les sous-licenciés actifs
+      var rvSubRev=subActive*rvSub*pctRV*12;
       multiRev=deMultiRev+rvMultiRev+deSubRev+rvSubRev;
-      multiData.nbNew[i]=newMulti;
+      multiData.nbNew[i]=newMultiThisYear;
       multiData.revTotal[i]=multiRev;
     }
+    var totalAnimThisYear=totY[i]+(hasMulti?multiActive+subActive:0);
 
     var cai=dEi+rvi+prProp+multiRev;
     var foi=(nb+(hasMulti&&i>=2?nbM:0))*800;
@@ -571,6 +580,20 @@ function upd(){
     fNetArr.push(netP);fEntArr.push(entR);fCumArr.push(fCum);fEntCumArr.push(fEntCum);
 
     t('fNb'+y,nb);t('fTt'+y,totY[i]);
+    // Multi réseau rows
+    if(hasMulti){
+      t('fMNb'+y,i>=2?newMultiThisYear:'—');
+      t('fMTt'+y,i>=2?multiActive:'—');
+      t('fSNb'+y,i>=2?newSubThisYear:'—');
+      t('fSTt'+y,i>=2?subActive:'—');
+    } else {
+      t('fMNb'+y,'—');t('fMTt'+y,'—');t('fSNb'+y,'—');t('fSTt'+y,'—');
+    }
+    var taEl=g('fTA'+y);
+    if(taEl){
+      taEl.textContent=totalAnimThisYear;
+      taEl.className=(totalAnimThisYear>0?'pos':'');
+    }
     if(hasP)t('fPr'+y,ff(prProp));
     t('fDe'+y,ff(dEi));t('fRv'+y,ff(rvi));
     if(hasMulti)t('fMu'+y,multiRev>0?ff(multiRev):'—');
